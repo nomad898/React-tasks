@@ -1,8 +1,7 @@
 import React from 'react'
 
 const HelloWorldCreateElement = React.createElement(
-    'div',
-    {},
+    'div', {},
     React.createElement('h1', {}, 'Hello World!')
 );
 

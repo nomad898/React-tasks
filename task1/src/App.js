@@ -4,6 +4,7 @@ import HelloWorldComponent from './components/HelloWorldComponent';
 import HelloWorldPureComponent from './components/HelloWorldPureComponent';
 import HelloWorldFunctional from './components/HelloWorldFunctional';
 import HelloWorldLambdaFunctional from './components/HelloWorldLambdaFunctional';
+import HelloWorldCreateElementFunction from './components/HelloWorldCreateElementFunction';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <HelloWorldFunctional someText="This is function"/>
         <HelloWorldComponent someText="This is Component"/>
         <HelloWorldPureComponent someText="This is Pure Component"/> 
+        <HelloWorldCreateElementFunction />
       </div>
     </div>
   );
