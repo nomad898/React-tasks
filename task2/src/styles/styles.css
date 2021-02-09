@@ -1,0 +1,27 @@
+@import "~normalize.css";
+@import "roboto.css";
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+.container {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    max-width: 1000px;
+    border: 1.5rem;
+    border-color: #f0ffff;
+}
+
+h1 {
+    text-align: center;
+}
+
+.logo {
+    background-image: url("../assets/microsoft-5.svg");
+    background-size: cover;
+    height: 150px;
+    width: 150px;
+    margin: 0 auto;
+}
