@@ -1,3 +1,5 @@
 #common folders
 /node_modules
 /.vscode
+/dev
+/build

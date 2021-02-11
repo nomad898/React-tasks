@@ -3,15 +3,14 @@
 
 body {
     font-family: "Roboto", sans-serif;
+    background-color: #add8e6;
 }
 
 .container {
     margin-left: 2rem;
     margin-right: 2rem;
     margin-top: 2rem;
-    max-width: 1000px;
-    border: 1.5rem;
-    border-color: #f0ffff;
+    border: 5px solid #f0ffff;
 }
 
 h1 {
@@ -19,7 +18,7 @@ h1 {
 }
 
 .logo {
-    background-image: url("../assets/microsoft-5.svg");
+    background-image: url("../../public/assets/images/microsoft-5.svg");
     background-size: cover;
     height: 150px;
     width: 150px;
