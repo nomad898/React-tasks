@@ -1,4 +1,4 @@
-export default class User {
+class User {
     constructor(name, age) {
         this.name = name;
         this.age = age;
@@ -6,13 +6,11 @@ export default class User {
 
     get Name() {
         return this.name;
-    }
-
-    async start() {
-        await Promise.resolve('async is working')
-    }
+    } 
 
     toString() {
         console.log('Hello from User class');    
     }
 }
+
+export { User }
