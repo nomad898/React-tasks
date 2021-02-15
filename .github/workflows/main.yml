@@ -19,7 +19,7 @@ jobs:
       run: npm install
       working-directory: ./task2
     - name: Build page
-      run: npm run build
+      run: npm run dev
       working-directory: ./task2
     - name: Deploy to gh-pages
       uses: peaceiris/actions-gh-pages@v3
