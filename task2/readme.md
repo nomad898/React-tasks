@@ -5,7 +5,7 @@ Set DEV and PROD build configuration. Use env variables, dev server, optimizatio
  
 ### Evaluation criteria* 
  
-1. 1 Installed React, Redux, React-Redux, React-Router, Jest 
-1. 2 Configured Webpack 
-1. 3 Configured Babel.  Configured tests script 
-1. 4 Have DEV and PROD build commands (use env variables)  
+1. Installed React, Redux, React-Redux, React-Router, Jest 
+1. Configured Webpack 
+1. Configured Babel.  Configured tests script 
+1. Have DEV and PROD build commands (use env variables)  
