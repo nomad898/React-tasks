@@ -4,6 +4,7 @@ const {
 } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(common, {
     mode: 'development',
@@ -24,16 +25,8 @@ module.exports = merge(common, {
             title: `[DEV] Webpack config`,
             favicon: `${util.public}/assets/favicon.ico`           
         }),
-    ],
-    module: {
-        rules: [{
-                test: /\.(s[ac]ss)$/,
-                use: ['style-loader', 'css-loader', 'sass-loader'],
-            },
-            {
-                test: /\.(css)$/,
-                use: ['style-loader', 'css-loader'],
-            },
-        ]
-    },    
+        new MiniCssExtractPlugin({
+            filename: '[name].css'
+        }),
+    ],   
 });

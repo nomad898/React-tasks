@@ -33,41 +33,15 @@ module.exports = merge(common, {
         }),
         new BundleAnalyzerPlugin(),
     ],
-    module: {
-        rules: [{
-                test: /\.(s[ac]ss)$/,
-                use: [{
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            publicPath: '../dist/',
-                        },
-                    },
-                    'css-loader',
-                    'sass-loader'
-                ],
-            },
-            {
-                test: /\.(css)$/,
-                use: [{
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            publicPath: '../dist/',
-                        },
-                    },
-                    'css-loader'
-                ],
-            },
-        ],
-    },
     optimization: {
         splitChunks: {
             chunks: 'all'
         },
         minimizer: [
-            new CssMinimizerPlugin(),
             new TerserPlugin({
-                test: /\.js(\?.*)?$/i,
+                extractComments: false,
             }),
+            new CssMinimizerPlugin(),
         ]
     },
 });

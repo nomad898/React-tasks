@@ -1,6 +1,7 @@
 {
   "name": "aawebpack",
   "version": "1.0.0",
+  "homepage": "https://nomad898.github.io/React-tasks",
   "description": "My own webpack config for task#2",
   "private": true,
   "scripts": {

@@ -3,36 +3,7 @@ const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
-const filename = (ext, subfolder = '') => `${subfolder}[name].${ext}`
-
-const jsLoaders = extra => {
-    const loaders = [{
-            loader: 'babel-loader',
-            options: babelOptions()
-        },
-        {
-            loader: 'eslint-loader'
-        }
-    ];
-    return loaders;
-}
-
-const babelOptions = preset => {
-    const opts = {
-        presets: [
-            '@babel/preset-env',
-            '@babel/preset-react'
-        ],
-        plugins: [
-            '@babel/plugin-proposal-class-properties'
-        ]
-    };
-    if (preset) {
-        opts.presets.push(preset);
-    }
-    return opts;
-}
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     context: util.src,
@@ -61,14 +32,14 @@ module.exports = {
         rules: [{
                 test: /\.(js|jsx)?$/,
                 exclude: /node_modules/,
-                use: jsLoaders()
+                use: ['babel-loader', 'eslint-loader']
             },
             {
                 test: /\.(png|jpg|svg|gif)$/,
                 use: [{
                     loader: 'file-loader',
                     options: {
-                        name: filename('[ext]', 'assets/images/')
+                        name: `assets/images/[name].[ext]` 
                     }
                 }],
             },
@@ -77,9 +48,32 @@ module.exports = {
                 use: [{
                     loader: 'file-loader',
                     options: {
-                        name: filename('[ext]', 'assets/fonts/')
+                        name: `assets/fonts/[name].[ext]` 
                     }
                 }],
+            },
+            {
+                test: /\.(s[ac]ss)$/,
+                use: [{
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '',
+                        },
+                    },
+                    'css-loader',
+                    'sass-loader'
+                ],
+            },
+            {
+                test: /\.(css)$/,
+                use: [{
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '',
+                        },
+                    },
+                    'css-loader'
+                ],
             }
         ]
     },
