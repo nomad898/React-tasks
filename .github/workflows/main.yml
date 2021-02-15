@@ -21,8 +21,14 @@ jobs:
     - name: Build page
       run: npm run dev
       working-directory: ./task2
-    - name: Deploy to gh-pages
-      uses: peaceiris/actions-gh-pages@v3
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@4.0.0
       with:
-        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        publish_dir: ./
+        branch: gh-pages
+        folder: build
+        clean: true
+        clean-exclude: |
+          special-file.txt
+          some/*.txt
+        ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+
