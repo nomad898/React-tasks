@@ -1,4 +1,4 @@
-name: Deployment
+name: Main
 on:
   push:
     branches:
@@ -17,8 +17,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install Packages
       run: npm install
+      working-directory: ./task2
     - name: Build page
       run: npm run build
+      working-directory: ./task2
     - name: Deploy to gh-pages
       uses: peaceiris/actions-gh-pages@v3
       with:
