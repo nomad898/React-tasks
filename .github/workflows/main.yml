@@ -10,11 +10,8 @@ jobs:
       matrix:
         node-version: [12.x]
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+    - name: Checkout 🛎️
+      uses: actions/checkout@v2.3.1
     - name: Install Packages
       run: npm install
       working-directory: ./task2
@@ -25,7 +22,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@4.0.0
       with:
         branch: gh-pages
-        folder: build
+        folder: dist
         clean: true
         clean-exclude: |
           special-file.txt
