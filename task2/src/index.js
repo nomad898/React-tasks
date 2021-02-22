@@ -6,7 +6,7 @@ import './styles/styles.css'
 import './styles/styles.scss'
 
 let user = new User('John', 21);
-user.toString();
+user.toConsole();
 
 async function CallAsync() {
   return await Promise.resolve('async is working')
@@ -14,7 +14,7 @@ async function CallAsync() {
 
 CallAsync().then(console.log)
 
-ReactDOM.render( 
-  <App /> ,
+ReactDOM.render(
+  <App />,
   document.getElementById('root')
 );

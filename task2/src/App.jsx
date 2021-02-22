@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   MemoryRouter as Router,
   Switch,
@@ -9,9 +8,7 @@ import { Hello, About, Home, Users } from '@components'
   
 const App = () => (
     <div className="container">
-        <div className="logo">        
-        </div>
-        <hr />
+        <div className="logo" />
         <div className="card">
             <h1>Hello from WP</h1>
         </div>

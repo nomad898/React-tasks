@@ -1,15 +1,11 @@
 const util = require('./util');
-const {
-    merge
-} = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
-const {
-    BundleAnalyzerPlugin
-} = require('webpack-bundle-analyzer');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = merge(common, {
     mode: 'production',
@@ -26,8 +22,6 @@ module.exports = merge(common, {
                 collapseWhitespace: true
             }
         }),
-        // Extracts CSS into separate files
-        // Note: style-loader is for development, MiniCssExtractPlugin is for production
         new MiniCssExtractPlugin({
             filename: '[name].[contenthash].css'
         }),
@@ -41,7 +35,9 @@ module.exports = merge(common, {
             new TerserPlugin({
                 extractComments: false,
             }),
-            new CssMinimizerPlugin(),
+            new CssMinimizerPlugin({
+                cache: true,
+            }),
         ]
     },
 });

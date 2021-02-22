@@ -8,7 +8,7 @@ class User {
         return this.name;
     } 
 
-    toString() {
+    toConsole() {
         console.log('Hello from User class');    
     }
 }

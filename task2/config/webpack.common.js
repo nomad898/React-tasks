@@ -1,14 +1,12 @@
 const util = require('./util');
-const {
-    CleanWebpackPlugin
-} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     context: util.src,
     entry: {
-        main: ['@babel/polyfill', './index.js'],
+        main: ['./index.js'],
     },
     resolve: {
         extensions: ['.js', '.jsx'],
