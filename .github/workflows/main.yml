@@ -1,0 +1,31 @@
+name: Main
+on:
+  push:
+    branches:
+      - task2-webpack
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - name: Checkout 🛎️
+      uses: actions/checkout@v2.3.1
+    - name: Install Packages
+      run: npm install
+      working-directory: ./task2
+    - name: Build page
+      run: npm run dev
+      working-directory: ./task2
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@4.0.0
+      with:
+        branch: gh-pages
+        folder: task2/dist
+        clean: true
+        clean-exclude: |
+          special-file.txt
+          some/*.txt
+        ssh-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+
