@@ -1,50 +1,20 @@
-import {
-  MemoryRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-import { Hello, About, Home, Users } from '@components'
-  
+import styled from 'styled-components'
+import '@styles/roboto.css';
+import { Home } from '@pages/Home/Home'
+
+const AppStyled = styled.div`
+  background-color: #232323;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  font-family: "Roboto", sans-serif;
+  color: #ffffff;
+`;
+
 const App = () => (
-    <div className="container">
-        <div className="logo" />
-        <div className="card">
-            <h1>Hello from WP</h1>
-        </div>
-        <Router>
-            <div>
-                <ul>
-                  <li>
-                    <Link to="/">Home</Link>
-                  </li>
-                  <li>
-                    <Link to="/about">About</Link>
-                  </li>
-                  <li>
-                    <Link to="/users">Users</Link>
-                  </li>
-                  <li>
-                    <Link to="/hello">Hello</Link>
-                  </li>
-                </ul>      
-              <Switch>   
-                <Route path="/about">
-                  <About />
-                </Route>
-                <Route path="/users">
-                  <Users />
-                </Route>
-                <Route path="/hello">
-                  <Hello />
-                </Route>           
-                <Route path="/">
-                  <Home />
-                </Route>               
-              </Switch>
-            </div>
-        </Router>
-    </div>    
+  <AppStyled>
+    <Home />
+  </AppStyled>
 )
 
 export { App };
