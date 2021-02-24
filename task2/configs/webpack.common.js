@@ -1,19 +1,22 @@
-const util = require('./util');
+const paths = require('./paths');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    context: util.src,
+    context: paths.src,
     entry: {
-        main: ['./index.js'],
+        main: ['./index.jsx'],
     },
     resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
-            '@': util.src,
-            '@models': `${util.src}/models`,
-            '@components': `${util.src}/components`,
+            '@': paths.src,
+            '@models': `${paths.src}/models`,
+            '@components': `${paths.src}/components`,
+            '@pages': `${paths.src}/pages`,
+            '@styles': `${paths.src}/styles`,
+            '@public': `${paths.public}`
         }
     },
     plugins: [
@@ -21,8 +24,8 @@ module.exports = {
         // uncomment following, if required to copy some static files
         new CopyWebpackPlugin({
             patterns: [{
-                from: `${util.public}/assets/favicon.ico`,
-                to: util.build
+                from: `${paths.public}/assets/favicon.ico`,
+                to: paths.build
             }]
         })
     ],

@@ -1,5 +1,5 @@
-const util = require('./util');
 const { merge } = require('webpack-merge');
+const paths = require('./paths');
 const common = require('./webpack.common.js');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -15,13 +15,13 @@ module.exports = merge(common, {
     },
     output: {
         filename: `[name].js`,
-        path: util.build,
+        path: paths.build,
     },   
     plugins: [
         new HTMLWebpackPlugin({
-            template: `${util.public}/index.html`,
+            template: `${paths.public}/index.html`,
             title: `[DEV] Webpack config`,
-            favicon: `${util.public}/assets/favicon.ico`           
+            favicon: `${paths.public}/assets/favicon.ico`           
         }),
         new MiniCssExtractPlugin({
             filename: '[name].css'

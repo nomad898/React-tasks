@@ -8,6 +8,4 @@ module.exports = {
 
   // Production build files
   build: path.resolve(__dirname, '../dist'),
-
-  isDev: process.env.NODE_ENV === 'development'
 }
