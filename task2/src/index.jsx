@@ -1,11 +1,16 @@
-import ReactDOM from 'react-dom'
-import '@styles/reset.css'
-import { App } from './App'
-import { AppErrorBoundary } from '@components/AppErrorBoundary/AppErrorBoundary';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import '@styles/reset.css';
+import { App, AppErrorBoundary } from '@components/global';
+import { Home } from '@pages';
 
 ReactDOM.render(
-  <AppErrorBoundary>
-    <App />
-  </AppErrorBoundary>,
+  <React.StrictMode>
+    <AppErrorBoundary>
+      <App>
+        <Home />
+      </App>
+    </AppErrorBoundary>
+  </React.StrictMode>,
   document.getElementById('root')
 );

@@ -17,7 +17,9 @@ module.exports = {
             '@components': `${paths.src}/components`,
             '@pages': `${paths.src}/pages`,
             '@styles': `${paths.src}/styles`,
-            '@public': `${paths.public}`
+            '@public': `${paths.public}`,
+            '@utils': `${paths.src}/utils`,
+            '@containers': `${paths.src}/containers`,
         }
     },
     plugins: [
