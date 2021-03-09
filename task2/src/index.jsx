@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '@styles/reset.css';
 import { App, AppErrorBoundary } from '@components/global';
-import { Home } from '@pages';
+import { Home } from './pages';
 
 ReactDOM.render(
   <React.StrictMode>
