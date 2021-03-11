@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import '@styles/reset.css';
 import '@styles/roboto.css';
 import { Colors } from '@utils';
 

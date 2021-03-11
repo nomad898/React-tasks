@@ -1,14 +1,24 @@
 import styled from 'styled-components';
 import { Colors} from '@utils';
 
+//TODO: change following CSS
 const MovieSort = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px 70px;
-    border-bottom: 5px solid ${Colors.SECONDARY_DARK};
+    padding: 10px 15px;
 `;
 
-export { MovieSort };
+const MovieSortText = styled.span`
+    margin-right: 5px;
+`;
+
+const MovieSortDropdown = styled.select`
+    padding: 5px 10px;
+    background-color: transparent;
+    color: ${Colors.WHITE};
+    border: none;
+`;
+
+export {
+    MovieSort,
+    MovieSortText,
+    MovieSortDropdown
+};

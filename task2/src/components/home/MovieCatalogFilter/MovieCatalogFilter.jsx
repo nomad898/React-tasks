@@ -1,30 +1,39 @@
-import { MovieService } from '@containers';
 import {
     MovieSort,
+    MovieSortText,
+    MovieSortDropdown,
     MovieGenre,
-    MovieGenreList,
-    MovieSortDropdown
-} from '@components/home'
+    MovieGenreList
+} from '@components/home';
+import { MovieCatalogFilter as Wrapper } from './MovieCatalogFilter.styles';
 
-const MovieCatalogFilter = () => (
-    <MovieSort>
+const MovieCatalogFilter = (props) => (
+    <Wrapper>
         <MovieGenreList>
             {
-                MovieService
-                    .getGenres()
+                props.genres
                     .map((genre, idx) =>
-                        idx === 0
-                            ? <MovieGenre key={idx} genre={genre} isActive>
-                                <span>{genre}</span>
-                            </MovieGenre>
-                            : <MovieGenre key={idx} genre={genre}>
-                                <span>{genre}</span>
-                            </MovieGenre>
+                        <MovieGenre
+                            href={`#${genre}`}
+                            key={idx}
+                            isActive={genre === props.activeFilter}
+                            onClick={(e) => props.onFilterClick(e)}
+                        >
+                            {genre}
+                        </MovieGenre>
                     )
             }
         </MovieGenreList>
-        <MovieSortDropdown />
-    </MovieSort>
+        <MovieSort>
+            <MovieSortText>
+                SORT BY
+            </MovieSortText>
+            <MovieSortDropdown onChange={(e) => props.onSortChange(e)}>
+                <option value="RELEASE_DATE">RELEASE DATE</option>
+                <option value="TITLE">TITLE</option>
+            </MovieSortDropdown>
+        </MovieSort>
+    </Wrapper>
 );
 
 export { MovieCatalogFilter };

@@ -1,5 +1,8 @@
-import styled from 'styled-components';
-import { Header, AppTitle, BoldText } from '@components/global';
+import {
+    Header,
+    AppTitle,
+    BoldText
+} from '@components/global';
 import { MovieSearch } from '@components/home';
 import { HomeHeaderTop } from './HomeHeaderTop.styles';
 import { AddMovieButton } from './AddMovieButton.styles';

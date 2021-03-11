@@ -1,14 +1,14 @@
 import { 
     HomeHeader,
     HomeMain,
-    HomeFooter 
 } from '@components/home';
-
+import { Footer } from '@components/global';
+ 
 const Home = () => (
     <>
         <HomeHeader />
         <HomeMain />
-        <HomeFooter /> 
+        <Footer /> 
     </>
 );
 

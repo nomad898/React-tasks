@@ -5,7 +5,6 @@ import inceptionPoster from '@public/assets/images/inception.jpg'
 import killBillPoster from '@public/assets/images/kill-bill.jpg'
 import pulpFictionPoster from '@public/assets/images/pulp-fiction.jpg'
 
-
 const movies = [
     new Movie('Marvel\'s Avengers', new Date(2012, 11, 10), 'genre', avengersPoster),
     new Movie('Bohemian Rhapsody', new Date(2018, 1, 28), 'genre', bohemianRhapsodyPoster),

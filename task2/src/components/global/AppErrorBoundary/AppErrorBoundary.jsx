@@ -25,11 +25,11 @@ class AppErrorBoundary extends Component {
             return (
                 <>
                     {
-                        localBoundary ?
-                            <Local>
+                        localBoundary
+                            ? <Local>
                                 {localBoundary}
-                            </Local> :
-                            <Global>
+                            </Local>
+                            : <Global>
                                 <h1>Ohhh, no... Something went wrong.</h1>
                             </Global>
                     }

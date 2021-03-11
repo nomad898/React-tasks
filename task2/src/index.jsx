@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '@styles/reset.css';
-import { App, AppErrorBoundary } from '@components/global';
+import {
+  App,
+  AppErrorBoundary,
+  Modal
+} from '@components/global';
 import { Home } from '@pages';
 
 ReactDOM.render(
   <React.StrictMode>
     <AppErrorBoundary>
       <App>
-        <Home />
+        {/* <Home /> */}
+        <Modal />
       </App>
     </AppErrorBoundary>
-  </React.StrictMode>,
+  </React.StrictMode >,
   document.getElementById('root')
 );

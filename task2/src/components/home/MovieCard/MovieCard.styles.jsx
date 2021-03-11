@@ -35,7 +35,7 @@ const MovieCardGenres = styled.span`
     color: ${Colors.SECONDARY_DARK};
 `;
 
-export { 
+export {
     MovieCard,
     MovieCardImage,
     MovieCardInfo,

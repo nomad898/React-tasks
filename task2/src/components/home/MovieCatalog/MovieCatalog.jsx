@@ -1,18 +1,34 @@
-import { MovieService } from '@containers';
-import { MovieCard } from '@components/home'
+import PropTypes from 'prop-types';
+import { BoldText } from '@components/global';
+import {
+    MovieCard,
+    MovieCatalogCounter
+} from '@components/home';
 import { MovieCatalog as Wrapper } from './MovieCatalog.styles';
 
-//TODO: DELETE IT and replace using CSS FLEX
-const MovieCatalog = () => (
-    <Wrapper>
-        {
-            MovieService
-                .getMovies()
-                .map((movie, idx) =>
-                    <MovieCard key={idx} movie={movie} />
-                )
-        }
-    </Wrapper>
+const MovieCatalog = (props) => (
+    <>
+        <MovieCatalogCounter>
+            <span><BoldText>{props.movies.length}</BoldText> movies found</span>
+        </MovieCatalogCounter>
+        <Wrapper>
+            {
+                props.movies
+                    .map((movie, idx) =>
+                        <MovieCard key={idx} movie={movie} />
+                    )
+            }
+        </Wrapper>
+    </>
 );
+
+MovieCatalog.propTypes = {
+    movies: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string,
+        releaseDate: PropTypes.instanceOf(Date),
+        genres: PropTypes.string,
+        poster: PropTypes.string
+    }))
+};
 
 export { MovieCatalog };
