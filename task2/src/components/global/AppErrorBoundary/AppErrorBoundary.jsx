@@ -21,13 +21,12 @@ class AppErrorBoundary extends Component {
 
     render() {
         if (this.state.hasError) {
-            const localBoundary = this.props.localBoundary;
             return (
                 <>
                     {
-                        localBoundary
+                        this.props.localBoundary
                             ? <Local>
-                                {localBoundary}
+                                {this.props.localBoundary}
                             </Local>
                             : <Global>
                                 <h1>Ohhh, no... Something went wrong.</h1>
@@ -43,4 +42,5 @@ class AppErrorBoundary extends Component {
 AppErrorBoundary.propTypes = {
     localBoundary: PropTypes.element
 };
+
 export { AppErrorBoundary };

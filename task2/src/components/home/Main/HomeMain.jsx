@@ -45,7 +45,11 @@ const HomeMain = () => {
                 onFilterClick={handleFilterChange}
                 onSortChange={handleSortChange}
             />
-            <MovieCatalog movies={movies} />
+            <MovieCatalog
+                movies={movies}
+                activeFilter={activeFilter}
+                activeSort={activeSort}
+            />
         </Main>
     )
 };

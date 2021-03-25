@@ -1,8 +1,23 @@
 import styled from 'styled-components';
+import { RedButton } from '@components/global';
 import { Colors } from '@utils'; 
+
+//I hope in future it will be a dropdown. But now it is placeholder for buttons
+const MovieCardDropdownButton = styled.div`
+    position: absolute;
+    right: 0;
+`;
+
+const MovieCardDropdownOption = styled(RedButton)`
+    display: none;
+`;
 
 const MovieCard = styled.div`
     //TODO: rewrite it using CSS GRID
+    position: relative;
+    &:hover ${MovieCardDropdownOption} {
+        display: block;
+    };
 `;
 
 const MovieCardImage = styled.img`
@@ -41,5 +56,7 @@ export {
     MovieCardInfo,
     MovieCardTitle,
     MovieCardReleaseDate,
-    MovieCardGenres
+    MovieCardGenres,
+    MovieCardDropdownButton,
+    MovieCardDropdownOption
 };

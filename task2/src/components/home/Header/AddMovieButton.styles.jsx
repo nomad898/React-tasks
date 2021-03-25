@@ -1,11 +1,8 @@
 import styled from 'styled-components';
-import { Button } from '@components/global';
-import { Colors } from '@utils';
+import { TransparentButton } from '@components/global';
 
-const AddMovieButton = styled(Button)`
+const AddMovieButton = styled(TransparentButton)`
     padding: 0.6em 1.4em;
-    color: ${Colors.PRIMARY_RED};
-    background: ${Colors.TRANSPARENT_WHITE};
 `;
 
-export { AddMovieButton }
+export { AddMovieButton };

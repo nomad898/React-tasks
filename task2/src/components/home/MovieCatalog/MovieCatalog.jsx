@@ -6,21 +6,48 @@ import {
 } from '@components/home';
 import { MovieCatalog as Wrapper } from './MovieCatalog.styles';
 
-const MovieCatalog = (props) => (
-    <>
-        <MovieCatalogCounter>
-            <span><BoldText>{props.movies.length}</BoldText> movies found</span>
-        </MovieCatalogCounter>
-        <Wrapper>
-            {
-                props.movies
-                    .map((movie, idx) =>
-                        <MovieCard key={idx} movie={movie} />
-                    )
+const MovieCatalog = (props) => {
+
+    //TODO: rewrite it with real API data. Hardcoded :(
+    const activeFilter = props.activeFilter.toLowerCase();
+    const movies = (props.activeFilter === 'ALL' ?
+        props.movies :
+        props.movies
+            .filter(
+                movie => movie.genres
+                    .split(', ')
+                    .filter(genre => genre === activeFilter)
+                    .length > 0))
+        .sort((a, b) => {
+            switch (props.activeSort) {
+                case 'RELEASE_DATE':
+                    return b.releaseDate - a.releaseDate;
+                case 'TITLE':
+                    return a.title.localeCompare(b.title);
             }
-        </Wrapper>
-    </>
-);
+        });
+
+    return (
+        <>
+            <MovieCatalogCounter>
+                <span>
+                    <BoldText>{movies.length}</BoldText> movies found
+                </span>
+            </MovieCatalogCounter>
+            <Wrapper>
+                {
+                    movies
+                        .map((movie, idx) =>
+                            <MovieCard
+                                key={idx}
+                                movie={movie}
+                            />
+                        )
+                }
+            </Wrapper>
+        </>
+    )
+};
 
 MovieCatalog.propTypes = {
     movies: PropTypes.arrayOf(PropTypes.shape({

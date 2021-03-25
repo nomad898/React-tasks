@@ -1,6 +1,12 @@
 import { App } from './App/App.styles';
 import { AppErrorBoundary } from './AppErrorBoundary/AppErrorBoundary';
-import { Button } from './Button/Button.styles';
+import {
+    Button,
+    TransparentButton,
+    RedButton,
+    ResetButton,
+    SubmitButton
+} from './Button/Button.styles';
 import {
     Text,
     RedText,
@@ -10,12 +16,16 @@ import { Header } from './Header/Header.styles';
 import { Main } from './Main/Main.styles';
 import { Footer } from './Footer/Footer';
 import { AppTitle } from './AppTitle/AppTitle';
-import { Modal } from './Modal/Modal';
+import { Modal, ModalInput, ModalFormFooter } from './Modal/Modal';
 
 export {
     App,
     AppErrorBoundary,
     Button,
+    TransparentButton,
+    RedButton,
+    ResetButton,
+    SubmitButton,
     Text,
     RedText,
     BoldText,
@@ -24,4 +34,6 @@ export {
     Footer,
     AppTitle,
     Modal,
+    ModalInput,
+    ModalFormFooter
 };

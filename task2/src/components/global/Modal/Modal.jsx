@@ -1,55 +1,78 @@
+import PropTypes from 'prop-types';
 import {
-    AppTitle,
     Text,
-    BoldText,
     RedText
 } from '@components/global';
 import {
     Modal as Wrapper,
-    ModalForm,
+    ModalWindow,
     ModalField,
-    ModalSubfield,
     ModalCloseButton,
-    ModalText,
+    ModalTitle as Title,
     ModalInput as Input,
-    ModalHeader,
-    ModalFooter
+    ModalFormFooter
 } from './Modal.styles';
+import { createPortal } from 'react-dom';
 
 const ModalInput = (props) => (
     <ModalField>
-        <ModalSubfield>
-            <RedText>{props.text}</RedText>
-        </ModalSubfield>
-        <ModalSubfield>
-            <Input placeholder={props.placeholder}></Input>
-        </ModalSubfield>
+        <RedText>{props.text}</RedText>
+        <Input placeholder={props.placeholder} value={props.value} readonly={props.readonly} />
     </ModalField>
 );
 
-const Modal = (props) => (
-    <Wrapper>
-        <ModalHeader>
-            <AppTitle />
-        </ModalHeader>
-        <ModalForm>
-            <ModalField>
-                <ModalCloseButton>
-                    <Text>X</Text>
-                </ModalCloseButton>
-            </ModalField>
-            <ModalField>
-                <ModalText>ADD MOVIE</ModalText>
-            </ModalField>
-            <ModalInput text="TITLE" placeholder="Enter movie title" />
-            <ModalInput text="RELEASE DATE" placeholder="Select Date" />
-            <ModalInput text="MOVIE URL" placeholder="Movie URL here" />
-            <ModalInput text="GENRE" placeholder="Select Genre" />
-            <ModalInput text="OVERVIEW" placeholder="Overview here" />
-            <ModalInput text="RUNTIME" placeholder="Runtime here" />
-        </ModalForm>
-        <ModalFooter />
-    </Wrapper>
+ModalInput.propTypes = {
+    text: PropTypes.string.isRequired,
+    placeholder: PropTypes.string.isRequired,
+    value: PropTypes.string,
+    readonly: PropTypes.bool
+};
+
+const ModalHeader = (props) => (
+    <ModalField>
+        <ModalCloseButton ref={props.closeButtonRef} onClick={props.onCloseClick}>
+            <Text>X</Text>
+        </ModalCloseButton>
+    </ModalField>
 );
 
-export { Modal };
+const ModalTitle = (props) => (
+    <ModalField textAlign={props.textAlign}>
+        <Title>{props.title}</Title>
+    </ModalField>
+);
+
+ModalTitle.propTypes = {
+    textAlign: PropTypes.string,
+    title: PropTypes.string.isRequired
+};
+
+const Modal = (props) => {
+    return createPortal(
+        <Wrapper>
+            <ModalWindow ref={props.modalRef}>
+                <ModalHeader
+                    closeButtonRef={props.closeButtonRef}
+                    onCloseClick={props.onCloseClick} />
+                {
+                    props.title &&
+                        <ModalTitle title={props.title} textAlign={props.textAlign} />
+                }
+                {props.children}
+            </ModalWindow>
+        </Wrapper>,
+        document.body
+    )
+};
+
+Modal.propTypes = {
+    textAlign: PropTypes.string,
+    title: PropTypes.string
+};
+
+
+export {
+    Modal,
+    ModalInput,
+    ModalFormFooter
+};

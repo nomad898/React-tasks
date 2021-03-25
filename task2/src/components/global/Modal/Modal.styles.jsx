@@ -1,33 +1,40 @@
 import styled from 'styled-components';
-import { Header, Footer } from '@components/global';
+import PropTypes from 'prop-types';
 import { Colors } from '@utils'
 
 const Modal = styled.div`
     height: 100%;
     width: 100%;
     position: fixed;
+    top: 0;
     background-color: ${Colors.TRANSPARENT_DARK};
 `;
 
-const ModalForm = styled.div`
+const ModalWindow = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 60%;
-    height: 70%;
+    max-height: 75%;
     max-width: 500px;
     max-height: 800px;
     background-color: ${Colors.PRIMARY_DARK};
 `;
 
 const ModalField = styled.div`
-    padding: 1.2rem 10% 0 10%;
+    padding: 1rem 10% 1rem 10%;
+    text-align: ${props => (props.textAlign ? props.textAlign : null)};
 `;
 
-const ModalSubfield = styled.div`
-    padding: 0.5rem 0;
+ModalField.propTypes = {
+    textAlign: PropTypes.string,
+};
+
+const ModalFormFooter = styled(ModalField)`
     display: flex;
+    justify-content: flex-end;
+    padding: 1rem 10% 1rem 10%;
 `;
 
 const ModalCloseButton = styled.button`
@@ -35,10 +42,10 @@ const ModalCloseButton = styled.button`
     top: 1.5rem;
     right: 1.5rem;
     border: none;
-    background-color: ${Colors.PRIMARY_DARK}
+    background-color: ${Colors.PRIMARY_DARK};
 `;
 
-const ModalText = styled.span`
+const ModalTitle = styled.span`
     font-size: 2em;
 `;
 //TODO: add invalid input style and fix height
@@ -48,28 +55,15 @@ const ModalInput = styled.input`
     background-color: ${Colors.SECONDARY_DARK};
     border: none;
     border-radius: 0.2rem;
-    padding-left: 1.5em;
+    margin: 0.2em 0;
+    padding: 0.5em 0;
 `;
-
-const ModalHeader = styled.header`
-    padding: 1em 10%;
-`;
-
-// TODO: fix it, this style does not work
-const ModalFooter = styled(Footer)`
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-`;
-
 export {
     Modal,
-    ModalForm,
+    ModalWindow,
     ModalField,
-    ModalSubfield,
     ModalCloseButton,
-    ModalText,
+    ModalTitle,
     ModalInput,
-    ModalHeader,
-    ModalFooter
+    ModalFormFooter
 };
