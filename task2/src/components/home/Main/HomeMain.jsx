@@ -106,8 +106,7 @@ class HomeMain extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevState.activeFilter !== this.state.activeFilter) {
             MovieService.getMovies()
-                .then(m => this.sortMovies(this.filterMovies(m)))
-                .then(m => this.setState({ movies: m }));
+                .then(m => this.setState({ movies: this.sortMovies(this.filterMovies(m))}));
         }
         else if (prevState.activeSort !== this.state.activeSort) {
             const movies = this.sortMovies(this.state.movies);
