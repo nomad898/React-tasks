@@ -109,7 +109,7 @@ class HomeMain extends Component {
                 .then(m => this.sortMovies(this.filterMovies(m)))
                 .then(m => this.setState({ movies: m }));
         }
-        if (prevState.activeSort !== this.state.activeSort) {
+        else if (prevState.activeSort !== this.state.activeSort) {
             const movies = this.sortMovies(this.state.movies);
             this.setState({ movies: movies });
         }
