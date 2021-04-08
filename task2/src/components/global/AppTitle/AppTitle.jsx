@@ -1,6 +1,6 @@
-import { 
-    RedText, 
-    BoldText 
+import {
+    RedText,
+    BoldText
 } from '@components/global';
 
 const AppTitle = () => (

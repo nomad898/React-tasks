@@ -1,16 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '@styles/reset.css';
-import { App, AppErrorBoundary } from '@components/global';
+import {
+  App,
+  AppErrorBoundary
+} from '@components/global';
 import { Home } from '@pages';
+import '@styles/reset.css';
+import '@styles/roboto.css';
+import '@styles/style.scss'
 
 ReactDOM.render(
   <React.StrictMode>
     <AppErrorBoundary>
-      <App>
+      <App id="app">
         <Home />
+        {/* <AddMovieModal /> */}
       </App>
     </AppErrorBoundary>
-  </React.StrictMode>,
+  </React.StrictMode >,
   document.getElementById('root')
 );

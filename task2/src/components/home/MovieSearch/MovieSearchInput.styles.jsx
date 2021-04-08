@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { Colors } from '@utils';
 
+//TODO: divide to global part
 const MovieSearchInput = styled.input`
-    flex-basis: 100%;
+    width: 100%;
     color: ${Colors.WHITE};
     background-color: ${Colors.TRANSPARENT_DARK};
     border: none;

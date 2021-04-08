@@ -6,12 +6,16 @@ const Text = styled.span`
     font-weight: 400;
 `;
 
-const RedText = styled.span`
-    color: ${Colors.PRIMARY_RED};
-`;
-
 const BoldText = styled.span`
     font-weight: 700;
 `;
 
-export { Text, RedText, BoldText };
+const RedText = styled.span`
+    color: ${Colors.PRIMARY_RED};
+`;
+
+export {
+    Text,
+    RedText,
+    BoldText
+};
