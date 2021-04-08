@@ -1640,9 +1640,7 @@ var HomeMain = /*#__PURE__*/function (_Component) {
             movies: m
           });
         });
-      }
-
-      if (prevState.activeSort !== this.state.activeSort) {
+      } else if (prevState.activeSort !== this.state.activeSort) {
         var movies = this.sortMovies(this.state.movies);
         this.setState({
           movies: movies
