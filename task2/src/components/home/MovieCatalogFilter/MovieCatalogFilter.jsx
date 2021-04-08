@@ -17,7 +17,7 @@ const MovieCatalogFilter = (props) => (
                             href={`#${genre}`}
                             key={idx}
                             isActive={genre === props.activeFilter}
-                            onClick={(e) => props.onFilterClick(e)}
+                            onClick={props.onFilterClick}
                         >
                             {genre}
                         </MovieGenre>
@@ -28,7 +28,7 @@ const MovieCatalogFilter = (props) => (
             <MovieSortText>
                 SORT BY
             </MovieSortText>
-            <MovieSortDropdown onChange={(e) => props.onSortChange(e)}>
+            <MovieSortDropdown onChange={props.onSortChange}>
                 <option value="RELEASE_DATE">RELEASE DATE</option>
                 <option value="TITLE">TITLE</option>
             </MovieSortDropdown>

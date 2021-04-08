@@ -2,7 +2,6 @@ import {
     Modal,
     ModalInput,
     ModalFormFooter,
-    ModalFormTitle,
     ResetButton,
     SubmitButton
 } from '@components/global';
@@ -11,7 +10,7 @@ import {
 const EditMovieModal = (props) => (
     <Modal title="EDIT MOVIE" modalRef={props.modalRef} closeButtonRef={props.closeButtonRef} onCloseClick={props.onCloseClick}>
         <form onSubmit={props.onSubmit}>
-            <ModalInput text="ID" readonly={true} value={1} /> 
+            <ModalInput text="ID" placeholder="Movie ID" readonly={true} value={1} /> 
             <ModalInput text="TITLE" placeholder="Enter movie title" value={2} />
             <ModalInput text="RELEASE DATE" placeholder="Select Date" value={3} />
             <ModalInput text="MOVIE URL" placeholder="Movie URL here" value={4} />
