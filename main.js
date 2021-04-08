@@ -1432,153 +1432,59 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "HomeMain": function() { return /* binding */ HomeMain; }
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.filter.js */ "../node_modules/core-js/modules/es.array.filter.js");
-/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "../node_modules/core-js/modules/es.regexp.exec.js");
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.string.split.js */ "../node_modules/core-js/modules/es.string.split.js");
-/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "../node_modules/react/index.js");
-/* harmony import */ var _components_global__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @components/global */ "./components/global/index.js");
-/* harmony import */ var _components_home__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @components/home */ "./components/home/index.js");
-/* harmony import */ var _containers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @containers */ "./containers/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "../node_modules/react/jsx-runtime.js");
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.concat.js */ "../node_modules/core-js/modules/es.array.concat.js");
+/* harmony import */ var core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.filter.js */ "../node_modules/core-js/modules/es.array.filter.js");
+/* harmony import */ var core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_filter_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "../node_modules/core-js/modules/es.regexp.exec.js");
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.string.split.js */ "../node_modules/core-js/modules/es.string.split.js");
+/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "../node_modules/react/index.js");
+/* harmony import */ var _components_global__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @components/global */ "./components/global/index.js");
+/* harmony import */ var _components_home__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @components/home */ "./components/home/index.js");
+/* harmony import */ var _containers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @containers */ "./containers/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "../node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
 
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
- //TODO: make right order when real API
 
 
-
-
-var HomeMain = function HomeMain() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      movies = _useState2[0],
-      setMovies = _useState2[1];
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
-      _useState4 = _slicedToArray(_useState3, 2),
-      genres = _useState4[0],
-      setGenres = _useState4[1]; //TODO: change state to const
-
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)('ALL'),
-      _useState6 = _slicedToArray(_useState5, 2),
-      activeFilter = _useState6[0],
-      setActiveFilter = _useState6[1];
-
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)('TITLE'),
-      _useState8 = _slicedToArray(_useState7, 2),
-      activeSort = _useState8[0],
-      setActiveSort = _useState8[1];
-
-  var filterMovies = function filterMovies(movies) {
-    return activeFilter === 'ALL' ? movies : movies.filter(function (movie) {
-      return movie.genres.split(', ').filter(function (genre) {
-        return genre === activeFilter;
-      }).length > 0;
-    });
-  };
-
-  var sortMovies = function sortMovies(movies) {
-    return movies.sort(function (a, b) {
-      switch (activeSort) {
-        case 'RELEASE_DATE':
-          return b.releaseDate - a.releaseDate;
-
-        case 'TITLE':
-          return a.title.localeCompare(b.title);
-      }
-    });
-  };
-
-  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
-    _containers__WEBPACK_IMPORTED_MODULE_6__.MovieService.getGenres().then(function (g) {
-      return setGenres(g);
-    });
-  });
-  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
-    _containers__WEBPACK_IMPORTED_MODULE_6__.MovieService.getMovies().then(function (m) {
-      setMovies(sortMovies(filterMovies(m)));
-    });
-  }, [activeFilter, activeSort]);
-
-  var handleFilterChange = function handleFilterChange(e) {
-    var filterValue = e.target.text;
-    setActiveFilter(filterValue);
-  };
-
-  var handleSortChange = function handleSortChange(e) {
-    var sortValue = e.target.value;
-    setActiveSort(sortValue);
-  };
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_components_global__WEBPACK_IMPORTED_MODULE_4__.Main, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_home__WEBPACK_IMPORTED_MODULE_5__.MovieCatalogFilter, {
-      genres: genres,
-      activeFilter: activeFilter,
-      onFilterClick: handleFilterChange,
-      onSortChange: handleSortChange
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_home__WEBPACK_IMPORTED_MODULE_5__.MovieCatalog, {
-      movies: movies
-    })]
-  });
-}; // class HomeMain extends Component {
-//     state = {
-//         movies: [],
-//         genres: [],
-//         activeFilter: 'ALL',
-//         activeSort: 'TITLE'
-//     };
-//     componentDidMount() {
-//         MovieService.getMovies()
-//             .then(m => {
-//                 this.setState({
-//                     movies: m,
-//                 });
-//             });
-//         MovieService.getGenres()
-//             .then(g => {
-//                 this.setState({
-//                     genres: g,
-//                 });
-//             });
-//     }
-// componentDidUpdate(prevProps, prevState) {
-//     let movies = [];
-//         let updated = false;
-//         if (prevState.activeFilter !== this.state.activeFilter) {
-//             MovieService.getMovies()
-//                 .then(m => {
-//                     movies = this.filterMovies(m)
-//                 });
-//             updated = true;
-//         }
-//         else if (prevState.activeSort !== this.state.activeSort) {
-//             movies = this.sortMovies(movies);
-//             updated = true;
-//         }
-//         return updated ? this.setState({ movies: movies }) : movies        
-// }
-//     filterMovies = (movies) => {
-//         const activeFilter = this.state.activeFilter;
+ // //TODO: make right order when real API
+// const HomeMain = () => {
+//     const [movies, setMovies] = useState([]);
+//     const [genres, setGenres] = useState([]);
+//     //TODO: change state to const
+//     const [activeFilter, setActiveFilter] = useState('ALL');
+//     const [activeSort, setActiveSort] = useState('TITLE');
+//     const filterMovies = (movies) => {
 //         return activeFilter === 'ALL' ?
 //             movies :
 //             movies
@@ -1588,9 +1494,9 @@ var HomeMain = function HomeMain() {
 //                         .filter(genre => genre === activeFilter)
 //                         .length > 0);
 //     }
-//     sortMovies = (movies) => {
+//     const sortMovies = (movies) => {
 //         return movies.sort((a, b) => {
-//             switch (this.state.activeSort) {
+//             switch (activeSort) {
 //                 case 'RELEASE_DATE':
 //                     return b.releaseDate - a.releaseDate;
 //                 case 'TITLE':
@@ -1598,40 +1504,169 @@ var HomeMain = function HomeMain() {
 //             }
 //         });
 //     }
-//     getMovieCatalog = (movies, filter, sort) => {
-//         const filtered = this.filterMovies(movies, filter);
-//         const sorted = this.sortMovies(filtered, sort);
-//         return sorted;
-//     }
-//     handleFilterChange = (e) => {
+//     useEffect(() => {
+//         MovieService.getGenres()
+//             .then(g => setGenres(g));
+//     });
+//     useEffect(() => {
+//         MovieService.getMovies()
+//             .then(m => {
+//                 setMovies(sortMovies(filterMovies(m)));
+//             });
+//     }, [activeFilter, activeSort]);
+//     const handleFilterChange = (e) => {
 //         const filterValue = e.target.text;
-//         this.setState({
-//             activeFilter: filterValue
-//         });
-//     }
-//     handleSortChange = (e) => {
+//         setActiveFilter(filterValue);
+//     };
+//     const handleSortChange = (e) => {
 //         const sortValue = e.target.value;
-//         this.setState({
-//             activeSort: sortValue
-//         });
+//         setActiveSort(sortValue);
 //     }
-//     render() {
-//         return (
-//             <Main>
-//                 <MovieCatalogFilter
-//                     genres={this.state.genres}
-//                     activeFilter={this.state.activeFilter}
-//                     onFilterClick={this.handleFilterChange}
-//                     onSortChange={this.handleSortChange}
-//                 />
-//                 <MovieCatalog
-//                     movies={this.state.movies}
-//                 />
-//             </Main>
-//         )
-//     }
-// }
+//     return (
+//         <Main>
+//             <MovieCatalogFilter
+//                 genres={genres}
+//                 activeFilter={activeFilter}
+//                 onFilterClick={handleFilterChange}
+//                 onSortChange={handleSortChange}
+//             />
+//             <MovieCatalog
+//                 movies={movies}
+//             />
+//         </Main>
+//     )
+// };
 
+
+
+
+var HomeMain = /*#__PURE__*/function (_Component) {
+  _inherits(HomeMain, _Component);
+
+  var _super = _createSuper(HomeMain);
+
+  function HomeMain() {
+    var _this;
+
+    _classCallCheck(this, HomeMain);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      movies: [],
+      genres: [],
+      activeFilter: 'ALL',
+      activeSort: 'TITLE'
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "filterMovies", function (movies) {
+      var activeFilter = _this.state.activeFilter;
+      return activeFilter === 'ALL' ? movies : movies.filter(function (movie) {
+        return movie.genres.split(', ').filter(function (genre) {
+          return genre === activeFilter;
+        }).length > 0;
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "sortMovies", function (movies) {
+      return movies.sort(function (a, b) {
+        switch (_this.state.activeSort) {
+          case 'RELEASE_DATE':
+            return b.releaseDate - a.releaseDate;
+
+          case 'TITLE':
+            return a.title.localeCompare(b.title);
+        }
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "getMovieCatalog", function (movies, filter, sort) {
+      var filtered = _this.filterMovies(movies, filter);
+
+      var sorted = _this.sortMovies(filtered, sort);
+
+      return sorted;
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleFilterChange", function (e) {
+      var filterValue = e.target.text;
+
+      _this.setState({
+        activeFilter: filterValue
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleSortChange", function (e) {
+      var sortValue = e.target.value;
+
+      _this.setState({
+        activeSort: sortValue
+      });
+    });
+
+    return _this;
+  }
+
+  _createClass(HomeMain, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      _containers__WEBPACK_IMPORTED_MODULE_7__.MovieService.getMovies().then(function (m) {
+        _this2.setState({
+          movies: m
+        });
+      });
+      _containers__WEBPACK_IMPORTED_MODULE_7__.MovieService.getGenres().then(function (g) {
+        _this2.setState({
+          genres: g
+        });
+      });
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      var _this3 = this;
+
+      if (prevState.activeFilter !== this.state.activeFilter) {
+        _containers__WEBPACK_IMPORTED_MODULE_7__.MovieService.getMovies().then(function (m) {
+          return _this3.sortMovies(_this3.filterMovies(m));
+        }).then(function (m) {
+          return _this3.setState({
+            movies: m
+          });
+        });
+      }
+
+      if (prevState.activeSort !== this.state.activeSort) {
+        var movies = this.sortMovies(this.state.movies);
+        this.setState({
+          movies: movies
+        });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_components_global__WEBPACK_IMPORTED_MODULE_5__.Main, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_home__WEBPACK_IMPORTED_MODULE_6__.MovieCatalogFilter, {
+          genres: this.state.genres,
+          activeFilter: this.state.activeFilter,
+          onFilterClick: this.handleFilterChange,
+          onSortChange: this.handleSortChange
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_home__WEBPACK_IMPORTED_MODULE_6__.MovieCatalog, {
+          movies: this.state.movies
+        })]
+      });
+    }
+  }]);
+
+  return HomeMain;
+}(react__WEBPACK_IMPORTED_MODULE_4__.Component);
 
 
 
