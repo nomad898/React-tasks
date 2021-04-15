@@ -14,7 +14,6 @@ ReactDOM.render(
     <AppErrorBoundary>
       <App id="app">
         <Home />
-        {/* <AddMovieModal /> */}
       </App>
     </AppErrorBoundary>
   </React.StrictMode >,
