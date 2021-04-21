@@ -1,177 +1,95 @@
 import {
     useState,
     useEffect,
-    Component
+    useCallback,
+    memo
 } from 'react';
 import {
-    Main,
+    Main as Wrapper,
 } from '@components/global';
 import {
     MovieCatalogFilter,
     MovieCatalog
 } from '@components/home';
 import { MovieService } from '@containers';
+import { useCountRenders } from '@utils';
 
-// //TODO: make right order when real API
-// const HomeMain = () => {
-//     const [movies, setMovies] = useState([]);
-//     const [genres, setGenres] = useState([]);
-//     //TODO: change state to const
-//     const [activeFilter, setActiveFilter] = useState('ALL');
-//     const [activeSort, setActiveSort] = useState('TITLE');
+// TODO: make right order when real API
+const HomeMain = memo((props) => {
+    const [movies, setMovies] = useState([]);
+    const [genres, setGenres] = useState([]);
+    //TODO: change state to const
+    const [activeFilter, setActiveFilter] = useState('ALL');
+    const [activeSort, setActiveSort] = useState('TITLE');
 
-//     const filterMovies = (movies) => {
-//         return activeFilter === 'ALL' ?
-//             movies :
-//             movies
-//                 .filter(
-//                     movie => movie.genres
-//                         .split(', ')
-//                         .filter(genre => genre === activeFilter)
-//                         .length > 0);
-//     }
+    const filterMovies = useCallback(
+        (movies) => {
+            return activeFilter === 'ALL' ?
+                movies :
+                movies
+                    .filter(
+                        movie => movie.genres
+                            .split(', ')
+                            .filter(genre => genre === activeFilter)
+                            .length > 0);
+        },
+        [activeFilter]
+    );
 
-//     const sortMovies = (movies) => {
-//         return movies.sort((a, b) => {
-//             switch (activeSort) {
-//                 case 'RELEASE_DATE':
-//                     return b.releaseDate - a.releaseDate;
-//                 case 'TITLE':
-//                     return a.title.localeCompare(b.title);
-//             }
-//         });
-//     }
+    const sortMovies = useCallback(
+        (movies) => {
+            return movies.sort((a, b) => {
+                switch (activeSort) {
+                    case 'RELEASE_DATE':
+                        return b.releaseDate - a.releaseDate;
+                    case 'TITLE':
+                        return a.title.localeCompare(b.title);
+                }
+            });
+        },
+        [activeSort]
+    );
 
-//     useEffect(() => {
-//         MovieService.getGenres()
-//             .then(g => setGenres(g));
-//     });
+    useEffect(() => {
+        console.log('get Genres');
+        MovieService.getGenres()
+            .then(g => setGenres(g));
+    }, [activeFilter]);
 
-//     useEffect(() => {
-//         MovieService.getMovies()
-//             .then(m => {
-//                 setMovies(sortMovies(filterMovies(m)));
-//             });
-//     }, [activeFilter, activeSort]);
-
-//     const handleFilterChange = (e) => {
-//         const filterValue = e.target.text;
-//         setActiveFilter(filterValue);
-//     };
-
-//     const handleSortChange = (e) => {
-//         const sortValue = e.target.value;
-//         setActiveSort(sortValue);
-//     }
-
-//     return (
-//         <Main>
-//             <MovieCatalogFilter
-//                 genres={genres}
-//                 activeFilter={activeFilter}
-//                 onFilterClick={handleFilterChange}
-//                 onSortChange={handleSortChange}
-//             />
-//             <MovieCatalog
-//                 movies={movies}
-//             />
-//         </Main>
-//     )
-// };
-
-class HomeMain extends Component {
-
-    state = {
-        movies: [],
-        genres: [],
-        activeFilter: 'ALL',
-        activeSort: 'TITLE'
-    };
-
-    componentDidMount() {
+    useEffect(() => {
+        console.log('get Movies');
         MovieService.getMovies()
             .then(m => {
-                this.setState({
-                    movies: m,
-                });
+                setMovies(sortMovies(filterMovies(m)));
             });
-        MovieService.getGenres()
-            .then(g => {
-                this.setState({
-                    genres: g,
-                });
-            });
-    }
+    }, [activeFilter, activeSort]);
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.activeFilter !== this.state.activeFilter) {
-            MovieService.getMovies()
-                .then(m => this.setState({ movies: this.sortMovies(this.filterMovies(m))}));
-        }
-        else if (prevState.activeSort !== this.state.activeSort) {
-            const movies = this.sortMovies(this.state.movies);
-            this.setState({ movies: movies });
-        }
-    }
-
-    filterMovies = (movies) => {
-        const activeFilter = this.state.activeFilter;
-        return activeFilter === 'ALL' ?
-            movies :
-            movies
-                .filter(
-                    movie => movie.genres
-                        .split(', ')
-                        .filter(genre => genre === activeFilter)
-                        .length > 0);
-    }
-
-    sortMovies = (movies) => {
-        return movies.sort((a, b) => {
-            switch (this.state.activeSort) {
-                case 'RELEASE_DATE':
-                    return b.releaseDate - a.releaseDate;
-                case 'TITLE':
-                    return a.title.localeCompare(b.title);
-            }
-        });
-    }
-
-    getMovieCatalog = (movies, filter, sort) => {
-        const filtered = this.filterMovies(movies, filter);
-        const sorted = this.sortMovies(filtered, sort);
-        return sorted;
-    }
-
-    handleFilterChange = (e) => {
+    const handleFilterClick = (e) => {
         const filterValue = e.target.text;
-        this.setState({
-            activeFilter: filterValue
-        });
-    }
+        setActiveFilter(filterValue);
+    };
 
-    handleSortChange = (e) => {
+    const handleSortChange = (e) => {
         const sortValue = e.target.value;
-        this.setState({
-            activeSort: sortValue
-        });
+        setActiveSort(sortValue);
     }
 
-    render() {
-        return (
-            <Main>
-                <MovieCatalogFilter
-                    genres={this.state.genres}
-                    activeFilter={this.state.activeFilter}
-                    onFilterClick={this.handleFilterChange}
-                    onSortChange={this.handleSortChange}
-                />
-                <MovieCatalog
-                    movies={this.state.movies}
-                />
-            </Main>
-        )
-    }
-}
+    useCountRenders('HomeMain');
+
+    return (
+        <Wrapper>
+            <MovieCatalogFilter
+                genres={genres}
+                activeFilter={activeFilter}
+                onFilterClick={handleFilterClick}
+                onSortChange={handleSortChange}
+            />
+            <MovieCatalog
+                movies={movies}
+                onMovieClick={props.onMovieClick}
+            />
+        </Wrapper>
+    )
+});
 
 export { HomeMain };

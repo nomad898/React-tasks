@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Colors} from '@utils';
+import { Colors } from '@utils';
 
 const MovieCatalogFilter = styled.div`
     display: flex;

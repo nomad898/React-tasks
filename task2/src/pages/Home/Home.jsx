@@ -1,7 +1,6 @@
 import {
     useState,
-    useRef,
-    Component
+    useCallback
 } from 'react';
 import {
     HomeHeader,
@@ -9,92 +8,46 @@ import {
     AddMovieModal
 } from '@components/home';
 import { Footer } from '@components/global';
+import { useCountRenders } from '@utils';
 
-// const Home = (props, state) => {
-//     const addMovieModalRef = useRef(null);
-//     const closeAddMovieButtonRef = useRef(null);
+const Home = (props, state) => {
+    const [activeMovie, setActiveMovie] = useState(null);
 
+    const handleShowMovie = useCallback(
+        (movie) => setActiveMovie(movie),
+        []
+    );
 
-//     const [activeMovie, setActiveMovie] = useState(null);
+    const [isAddMovieShown, setIsAddMovieShown] = useState(false);
 
-//     const handleShowMovie = (movie) => {
-//         setActiveMovie(movie);
-//     };
+    const handleCloseAddMovieModal = () => setIsAddMovieShown(false);
+    const handleAddMovieSubmit = () => alert('Saved! Actually not...');
+    const handleShowAddMovieModal = useCallback(
+        () => setIsAddMovieShown(true),
+        []
+    );
 
-//     const [isAddMovieShown, setIsAddMovieShown] = useState(false);
+    useCountRenders('Home');
 
-//     const handleCloseAddMovieModal = () => {
-//         setIsAddMovieShown(false);
-//     };
-//     const handleShowAddMovieModal = () => setIsAddMovieShown(true);
-//     const handleAddMovieSubmit = () => alert('Saved! Actually not...');
-
-//     return (
-//         <>
-//             <HomeHeader
-//                 activeMovie={activeMovie}
-//                 showAddMovieModal={handleShowAddMovieModal}
-//             />
-//             <HomeMain
-//                 handleShowMovie={handleShowMovie}
-//             />
-//             <Footer />
-//             {
-//                 isAddMovieShown && <AddMovieModal
-//                     onSubmit={handleAddMovieSubmit}
-//                     modalRef={addMovieModalRef}
-//                     closeButtonRef={closeAddMovieButtonRef}
-//                     onCloseClick={handleCloseAddMovieModal}
-//                 />
-
-//                 // isEditMovieShown && <>
-//             }
-//         </>
-//     )
-// };
-
-class Home extends Component {
-    state = {
-        activeMovie: null,
-        isAddMovieShown: false
-    };
-
-    handleShowMovie(movie) {
-        this.setState({
-            activeMovie: movie
-        });
-    }
-
-    handleShowAddMovieModal(shouldShow) {
-        this.setState({
-            isAddMovieShown: shouldShow
-        });
-    }
-
-    handleAddMovieSubmit() {
-        alert('Saved! Actually not...');
-    }
-
-    render() {
-        return (
-            <>
-                <HomeHeader
-                    activeMovie={this.state.activeMovie}
-                    showAddMovieModal={this.handleShowAddMovieModal}
+    return (
+        <>
+            <HomeHeader
+                activeMovie={activeMovie}
+                onSearchIconClick={handleShowMovie}
+                onAddMovieClick={handleShowAddMovieModal}
+            />
+            <HomeMain
+                onMovieClick={handleShowMovie}
+            />
+            <Footer />
+            {
+                isAddMovieShown && <AddMovieModal
+                    onSubmit={handleAddMovieSubmit}
+                    onCloseClick={handleCloseAddMovieModal}
                 />
-                <HomeMain
-                    handleShowMovie={this.handleShowMovie}
-                />
-                <Footer />
-                {
-                    this.state.isAddMovieShown && <AddMovieModal
-                        onSubmit={this.handleAddMovieSubmit}
-                        onCloseClick={this.handleShowAddMovieModal}
-                    />
-                }
-            </>
-        )
-    }
-}
+            }
+        </>
+    )
+};
 
 export { Home };

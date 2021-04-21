@@ -12,10 +12,12 @@ import {
 } from './MovieSort/MovieSort.styles';
 import { MovieGenre } from './MovieGenreList/MovieGenre.styles';
 import { MovieGenreList } from './MovieGenreList/MovieGenreList.styles';
+import { MovieDetails } from './MovieDetails/MovieDetails';
 import {
     AddMovieModal,
     DeleteMovieModal,
-    EditMovieModal } from './Modals'
+    EditMovieModal 
+} from './Modals'
 
 export {
     HomeHeader,
@@ -30,6 +32,7 @@ export {
     MovieSortDropdown,
     MovieGenre,
     MovieGenreList,
+    MovieDetails,
     AddMovieModal,
     DeleteMovieModal,
     EditMovieModal

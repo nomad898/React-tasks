@@ -1,4 +1,3 @@
-import { App } from './App/App.styles';
 import { AppErrorBoundary } from './AppErrorBoundary/AppErrorBoundary';
 import {
     Button,
@@ -19,7 +18,6 @@ import { AppTitle } from './AppTitle/AppTitle';
 import { Modal, ModalInput, ModalFormFooter } from './Modal/Modal';
 
 export {
-    App,
     AppErrorBoundary,
     Button,
     TransparentButton,

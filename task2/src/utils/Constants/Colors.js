@@ -6,6 +6,7 @@ const Colors = {
     FONT_DARK: '#555555',
     TRANSPARENT_DARK: 'rgba(0,0,0,0.7)',
     TRANSPARENT_WHITE: 'rgba(141,141,141,0.4)',
+    GREEN: '#ADFF2F'
 };
 
 export { Colors };

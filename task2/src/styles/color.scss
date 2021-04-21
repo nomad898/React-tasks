@@ -1,0 +1,20 @@
+// TODO: replacement for .js enum. Can be used in style files and in js
+$primary-dark: #232323;
+$primary-red: #f65261;
+$secondary-dark: #424242;
+$white: #ffffff;
+$green: #ADFF2F;
+$font-dark: #555555;
+$transparent-dark: rgba(0,0,0,0.7);
+$transparent-white: rgba(141,141,141,0.4);
+
+:export {
+    primaryDark: $primary-dark;
+    primaryRed: $primary-red;
+    secondaryDark: $secondary-dark;
+    white: $white;
+    green: $green;
+    fontDark: $font-dark;
+    transparentDark: $transparent-dark;
+    transparentWhite: $transparent-white;
+}

@@ -22,7 +22,6 @@ const MovieCard = styled.div`
 
 const MovieCardImage = styled.img`
     width: 100%;
-    height: 20%;
 `;
 
 const MovieCardInfo = styled.div`
