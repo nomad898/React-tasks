@@ -1,6 +1,5 @@
 import {
-    useState,
-    useRef
+    useState
 } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -17,25 +16,21 @@ import {
     MovieCardDropdownButton,
     MovieCardDropdownOption
 } from './MovieCard.styles';
+import { useCountRenders } from '@utils';
 
-const MovieCard = (props) => {
-    const [movie, setMovie] = useState(props.movie);
-
-    const editMovieModalRef = useRef(null);
-    const closeEditButtonRef = useRef(null);
+const MovieCard =(props) => {
     const [isEditMovieShown, setIsEditMovieShown] = useState(false);
-
-    const deleteMovieModalRef = useRef(null);
-    const closeDeleteButtonRef = useRef(null);
     const [isDeleteMovieShown, setIsDeleteMovieShown] = useState(false);
 
     const handleCloseEditMovieModal = () => setIsEditMovieShown(false);
     const handleShowEditMovieModal = () => setIsEditMovieShown(true);
     const handleEditMovieSubmit = () => alert('Edited! Actually not...');
-    
-    const handleCloseDeleteMovieModal = () => setIsDeleteMovieShown(false);
-    const handleShowDeleteMovieModal = () => setIsDeleteMovieShown(true);
+
+    const handleCloseDeleteMovieModal = () => setIsEditMovieShown(false);
+    const handleShowDeleteMovieModal = () => setIsEditMovieShown(true);
     const handleDeleteMovieSubmit = () => alert('Edited! Actually not...');
+
+    useCountRenders('MovieCard');
 
     return (
         <Wrapper>
@@ -43,12 +38,12 @@ const MovieCard = (props) => {
             <MovieCardDropdownButton>
                 <MovieCardDropdownOption onClick={handleShowEditMovieModal}>
                     Edit
-            </MovieCardDropdownOption>
+                </MovieCardDropdownOption>
                 <MovieCardDropdownOption onClick={handleShowDeleteMovieModal}>
                     Delete
-            </MovieCardDropdownOption>
+                </MovieCardDropdownOption>
             </MovieCardDropdownButton>
-            <MovieCardImage src={props.movie.poster} />
+            <MovieCardImage src={props.movie.poster} onClick={() => props.onMovieClick(props.movie)} />
             <MovieCardInfo>
                 <MovieCardTitle>
                     {props.movie.title}
@@ -63,16 +58,12 @@ const MovieCard = (props) => {
             {
                 isEditMovieShown && <EditMovieModal
                     onSubmit={handleEditMovieSubmit}
-                    modalRef={editMovieModalRef}
-                    closeButtonRef={closeEditButtonRef}
                     onCloseClick={handleCloseEditMovieModal}
                 />
             }
             {
                 isDeleteMovieShown && <DeleteMovieModal
                     onSubmit={handleDeleteMovieSubmit}
-                    modalRef={deleteMovieModalRef}
-                    closeButtonRef={closeDeleteButtonRef}
                     onCloseClick={handleCloseDeleteMovieModal}
                 />
             }

@@ -5,14 +5,18 @@ import {
     MovieCatalogCounter
 } from '@components/home';
 import { MovieCatalog as Wrapper } from './MovieCatalog.styles';
+import { useCountRenders } from '@utils';
 
 const MovieCatalog = (props) => {
+
+    useCountRenders('MovieCatalog');
+
     return (
         <>
             <MovieCatalogCounter>
                 <span>
                     <BoldText>{props.movies.length}</BoldText> movies found
-                </span>
+            </span>
             </MovieCatalogCounter>
             <Wrapper>
                 {
@@ -21,6 +25,7 @@ const MovieCatalog = (props) => {
                             <MovieCard
                                 key={idx}
                                 movie={movie}
+                                onMovieClick={props.onMovieClick}
                             />
                         )
                 }

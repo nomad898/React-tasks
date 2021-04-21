@@ -30,9 +30,14 @@ ModalInput.propTypes = {
 
 const ModalHeader = (props) => (
     <ModalField>
-        <ModalCloseButton ref={props.closeButtonRef} onClick={props.onCloseClick}>
-            <Text>X</Text>
-        </ModalCloseButton>
+        {
+            props.onCloseClick ?
+                <ModalCloseButton onClick={props.onCloseClick}>
+                    <Text>X</Text>
+                </ModalCloseButton> :
+                <>
+                </>
+        }
     </ModalField>
 );
 
@@ -50,13 +55,11 @@ ModalTitle.propTypes = {
 const Modal = (props) => {
     return createPortal(
         <Wrapper>
-            <ModalWindow ref={props.modalRef}>
-                <ModalHeader
-                    closeButtonRef={props.closeButtonRef}
-                    onCloseClick={props.onCloseClick} />
+            <ModalWindow>
+                <ModalHeader onCloseClick={props.onCloseClick} />
                 {
                     props.title &&
-                        <ModalTitle title={props.title} textAlign={props.textAlign} />
+                    <ModalTitle title={props.title} textAlign={props.textAlign} />
                 }
                 {props.children}
             </ModalWindow>
