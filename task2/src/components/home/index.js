@@ -1,18 +1,18 @@
-import { HomeHeader } from './Header/HomeHeader';
-import { HomeMain } from './Main/HomeMain';
-import { MovieSearch } from './MovieSearch/MovieSearch';
-import { MovieCard } from './MovieCard/MovieCard';
-import { MovieCatalogFilter } from './MovieCatalogFilter/MovieCatalogFilter';
-import { MovieCatalogCounter } from './MovieCatalogCounter/MovieCatalogCounter.styles';
-import { MovieCatalog } from './MovieCatalog/MovieCatalog'
+import { Header } from './Header/Header';
+import { Main } from './Main/Main';
+import { MovieSearch } from './Main/MovieSearch/MovieSearch';
+import { MovieCard } from './Main/MovieCard/MovieCard';
+import { MovieCatalogFilter } from './Main/MovieCatalogFilter/MovieCatalogFilter';
+import { MovieCatalogCounter } from './Main/MovieCatalogCounter/MovieCatalogCounter.styles';
+import { MovieCatalog } from './Main/MovieCatalog/MovieCatalog'
 import {
     MovieSort,
     MovieSortText,
     MovieSortDropdown
-} from './MovieSort/MovieSort.styles';
-import { MovieGenre } from './MovieGenreList/MovieGenre.styles';
-import { MovieGenreList } from './MovieGenreList/MovieGenreList.styles';
-import { MovieDetails } from './MovieDetails/MovieDetails';
+} from './Main/MovieSort/MovieSort.styles';
+import { MovieGenre } from './Main/MovieGenreList/MovieGenre.styles';
+import { MovieGenreList } from './Main/MovieGenreList/MovieGenreList.styles';
+import { MovieDetails } from './Header/MovieDetails';
 import {
     AddMovieModal,
     DeleteMovieModal,
@@ -20,8 +20,8 @@ import {
 } from './Modals'
 
 export {
-    HomeHeader,
-    HomeMain,
+    Header,
+    Main,
     MovieSearch,
     MovieCatalogFilter,
     MovieCatalogCounter,

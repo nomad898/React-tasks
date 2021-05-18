@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Colors } from '@utils';
+import color from '@styles/modules/_colors.module.scss';
 
 const Text = styled.span`
-    color: ${Colors.WHITE};
+    color: ${color.white};
     font-weight: 400;
 `;
 
@@ -11,7 +11,7 @@ const BoldText = styled.span`
 `;
 
 const RedText = styled.span`
-    color: ${Colors.PRIMARY_RED};
+    color: ${color.primaryRed};
 `;
 
 export {

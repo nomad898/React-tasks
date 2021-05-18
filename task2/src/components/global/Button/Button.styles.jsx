@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Colors } from '@utils';
+import styled from 'styled-components';
+import color from '@styles/modules/_colors.module.scss';
 
 const Button = styled.button`
     text-align: center;
@@ -8,21 +8,21 @@ const Button = styled.button`
 `;
 
 const TransparentButton = styled(Button)`
-    color: ${Colors.PRIMARY_RED};
-    background: ${Colors.TRANSPARENT_WHITE};
+    color: ${color.primaryRed};
+    background: ${color.transparentWhite};
 `;
 
 const ResetButton = styled(Button)`
     padding: 1em 1.5em;
     margin: 0 0.5em;
-    border: 2px solid ${Colors.PRIMARY_RED};
-    background: ${Colors.PRIMARY_DARK};
-    color: ${Colors.WHITE};
+    border: 2px solid ${color.primaryRed};
+    background: ${color.primaryDark};
+    color: ${color.white};
 `;
 
 const RedButton = styled(Button)`
-    color: ${Colors.WHITE};
-    background-color: ${Colors.PRIMARY_RED};
+    color: ${color.white};
+    background-color: ${color.primaryRed};
 `;
 
 const SubmitButton = styled(RedButton)`

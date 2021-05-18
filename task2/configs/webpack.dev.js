@@ -21,7 +21,7 @@ module.exports = merge(common, {
         new HTMLWebpackPlugin({
             template: `${paths.public}/index.html`,
             title: `[DEV] Webpack config`,
-            favicon: `${paths.public}/assets/favicon.ico`           
+            favicon: `${paths.public}/assets/favicon.ico`
         }),
         new MiniCssExtractPlugin({
             filename: '[name].css'

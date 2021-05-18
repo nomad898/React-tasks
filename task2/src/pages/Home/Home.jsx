@@ -3,14 +3,14 @@ import {
     useCallback
 } from 'react';
 import {
-    HomeHeader,
-    HomeMain,
+    Header,
+    Main,
     AddMovieModal
 } from '@components/home';
 import { Footer } from '@components/global';
-import { useCountRenders } from '@utils';
+import { useCountRenders } from '@utils/hooks';
 
-const Home = (props, state) => {
+const Home = () => {
     const [activeMovie, setActiveMovie] = useState(null);
 
     const handleShowMovie = useCallback(
@@ -21,7 +21,9 @@ const Home = (props, state) => {
     const [isAddMovieShown, setIsAddMovieShown] = useState(false);
 
     const handleCloseAddMovieModal = () => setIsAddMovieShown(false);
+
     const handleAddMovieSubmit = () => alert('Saved! Actually not...');
+
     const handleShowAddMovieModal = useCallback(
         () => setIsAddMovieShown(true),
         []
@@ -31,12 +33,12 @@ const Home = (props, state) => {
 
     return (
         <>
-            <HomeHeader
+            <Header
                 activeMovie={activeMovie}
                 onSearchIconClick={handleShowMovie}
                 onAddMovieClick={handleShowAddMovieModal}
             />
-            <HomeMain
+            <Main
                 onMovieClick={handleShowMovie}
             />
             <Footer />

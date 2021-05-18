@@ -1,3 +1,7 @@
 import { MovieService } from './MovieService';
+import { HttpClient } from './HttpClient';
 
-export { MovieService };
+export {
+    MovieService,
+    HttpClient
+};

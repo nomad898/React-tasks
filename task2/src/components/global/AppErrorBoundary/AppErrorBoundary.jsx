@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-    AppErrorBoundaryGlobal as Global,
-    AppErrorBoundaryLocal as Local,
+    Global,
+    Local,
 } from './AppErrorBoundary.styles';
 
 class AppErrorBoundary extends Component {

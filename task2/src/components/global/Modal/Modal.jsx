@@ -1,3 +1,4 @@
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import {
     Text,
@@ -12,12 +13,18 @@ import {
     ModalInput as Input,
     ModalFormFooter
 } from './Modal.styles';
-import { createPortal } from 'react-dom';
 
-const ModalInput = (props) => (
+
+const ModalInput = (
+    {
+        text,
+        placeholder,
+        value,
+        readonly
+    }) => (
     <ModalField>
-        <RedText>{props.text}</RedText>
-        <Input placeholder={props.placeholder} value={props.value} readonly={props.readonly} />
+        <RedText>{text}</RedText>
+        <Input placeholder={placeholder} value={value} readonly={readonly} />
     </ModalField>
 );
 
@@ -28,11 +35,14 @@ ModalInput.propTypes = {
     readonly: PropTypes.bool
 };
 
-const ModalHeader = (props) => (
+const ModalHeader = (
+    {
+        onCloseClick
+    }) => (
     <ModalField>
         {
-            props.onCloseClick ?
-                <ModalCloseButton onClick={props.onCloseClick}>
+            onCloseClick ?
+                <ModalCloseButton onClick={onCloseClick}>
                     <Text>X</Text>
                 </ModalCloseButton> :
                 <>
@@ -41,9 +51,13 @@ const ModalHeader = (props) => (
     </ModalField>
 );
 
-const ModalTitle = (props) => (
-    <ModalField textAlign={props.textAlign}>
-        <Title>{props.title}</Title>
+const ModalTitle = (
+    {
+        textAlign,
+        title
+    }) => (
+    <ModalField textAlign={textAlign}>
+        <Title>{title}</Title>
     </ModalField>
 );
 
@@ -52,16 +66,22 @@ ModalTitle.propTypes = {
     title: PropTypes.string.isRequired
 };
 
-const Modal = (props) => {
+const Modal = (
+    {
+        onCloseClick,
+        title,
+        textAlign,
+        children
+    }) => {
     return createPortal(
         <Wrapper>
             <ModalWindow>
-                <ModalHeader onCloseClick={props.onCloseClick} />
+                <ModalHeader onCloseClick={onCloseClick} />
                 {
-                    props.title &&
-                    <ModalTitle title={props.title} textAlign={props.textAlign} />
+                    title &&
+                    <ModalTitle title={title} textAlign={textAlign} />
                 }
-                {props.children}
+                {children}
             </ModalWindow>
         </Wrapper>,
         document.body

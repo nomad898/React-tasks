@@ -1,8 +1,11 @@
 import { SearchIconButton as Wrapper } from './HeaderButton.styles';
 import SearchIcon from '@public/assets/images/search-icon.svg';
 
-const SearchIconButton = (props) => (
-    <Wrapper onClick={props.onSearchIconClick}>
+const SearchIconButton = (
+    {
+        onClick
+    }) => (
+    <Wrapper onClick={onClick}>
         <img src={SearchIcon} />
     </Wrapper>
 );
