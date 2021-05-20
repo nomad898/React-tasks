@@ -1,7 +1,7 @@
 const SortType = {
     DEFAULT: '',
     TITLE: 'title',
-    RELEASE_DATE: 'release_date',
+    'RELEASE DATE': 'release_date',
     RATING: 'vote_average'
 };
 

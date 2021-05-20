@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux'
-import { moviesReducer } from './moviesSlice';
+import { moviesSlice } from './moviesSlice';
+import { modalsSlice } from './modalsSlice';
+import { paramsSlice } from './paramsSlice';
 
 const rootReducer = combineReducers({
-    movies: moviesReducer
+    movies: moviesSlice,
+    modals: modalsSlice,
+    params: paramsSlice
 });
 
 export { rootReducer };

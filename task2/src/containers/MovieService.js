@@ -10,7 +10,7 @@ import {
 const URL_TEMPLATE = `${MOVIE_SERVICE_URL}${MOVIE_SERVICE_MOVIES}`;
 
 const addQueryString = (query, countOfKeys) => {
-    if (query) {
+    if (query && query.value !== '') {
         const concat = countOfKeys = countOfKeys > 1 ? '&' : '';
         return `${query.key}=${query.value}${concat}`;
     }
@@ -43,7 +43,14 @@ const getMovies = async (queryString) => {
         if (!response.ok) {
             return false;
         }
-        return await response.json();
+        const movies = await response.json();
+        const data = [];
+        movies.data.map(m => data.push(codeStyleConverter.toCamel(m, { deep: true })));
+        return {
+            data,
+            offset: movies.offset,
+            total: movies.totalAmount
+        };
     } catch (error) {
         return null;
     }
@@ -76,8 +83,6 @@ const editMovie = async (movie, converter) => {
             movie = codeStyleConverter.toSnake(movie);
             break;
     }
-
-    const body = JSON.stringify(movie);
     const response = await HttpClient.send(
         url,
         HttpClient.createRequest(HttpType.PUT, { body: movie })

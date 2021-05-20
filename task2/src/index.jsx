@@ -2,11 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { App } from '@app';
-import { store } from '@stores'
-import { moviesThunk } from '@stores/thunks'
-import { Movie } from './models/Movie';
-
-console.log('Initial state: ', store.getState())
+import { store } from '@stores';
+import { moviesThunk } from '@stores/thunks';
 
 const unsubscribe = store.subscribe(() =>
   console.log('State after dispatch: ', store.getState())
@@ -27,14 +24,14 @@ const unsubscribe = store.subscribe(() =>
 //     ['Comedy', 'dad'],
 //     1,
 //     45054)))
-unsubscribe()
+// unsubscribe()
 
-store.dispatch(moviesThunk.getMovies());
+// store.dispatch(moviesThunk.getMovies());
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      {/* <App /> */}
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

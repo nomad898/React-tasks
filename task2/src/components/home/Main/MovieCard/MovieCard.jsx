@@ -44,16 +44,16 @@ const MovieCard = (
                     Delete
                 </MovieCardDropdownOption>
             </MovieCardDropdownButton>
-            <MovieCardImage src={movie.poster} onClick={() => onClick(movie)} />
+            <MovieCardImage src={movie.posterPath} onClick={() => onClick(movie)} />
             <MovieCardInfo>
                 <MovieCardTitle>
                     {movie.title}
                 </MovieCardTitle>
                 <MovieCardReleaseDate>
-                    {movie.releaseDate.getFullYear()}
+                    {new Date(movie.releaseDate).getFullYear()}
                 </MovieCardReleaseDate>
                 <MovieCardGenres>
-                    {movie.genres}
+                    {movie.genres.join(', ')}
                 </MovieCardGenres>
             </MovieCardInfo>
             {
@@ -75,8 +75,8 @@ const MovieCard = (
 MovieCard.propTypes = {
     movie: PropTypes.shape({
         title: PropTypes.string,
-        releaseDate: PropTypes.instanceOf(Date),
-        genres: PropTypes.string,
+        releaseDate: PropTypes.string,
+        genres: PropTypes.arrayOf(PropTypes.string),
         poster: PropTypes.string
     })
 };

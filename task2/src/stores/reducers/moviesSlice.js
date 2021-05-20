@@ -1,24 +1,15 @@
 import {
-    ActionType,
-    FilterType,
-    SortType
+    ActionType
 } from '@utils/constants';
 
 const initialState = {
-    movies: {
-        data: [],
-        total: 0,
-        offset: 0
-    },
-    movie: null,
-    params: {
-        filter: FilterType.ALL,
-        sort: SortType.DEFAULT,
-        search: '',
-    }
+    data: [],
+    total: 0,
+    offset: 0,
+    movie: null
 };
 
-const moviesReducer = (state = initialState, action) => {
+const moviesSlice = (state = initialState, action) => {
     switch (action.type) {
         case ActionType.GET_MOVIE:
             return {
@@ -28,26 +19,12 @@ const moviesReducer = (state = initialState, action) => {
         case ActionType.GET_MOVIES:
             return {
                 ...state,
-                movies: {
-                    data: action.payload.movies.data,
-                    total: action.payload.movies.totalAmount,
-                    offset: action.payload.movies.offset
-                },
-                params: {
-                    filter: action.payload.params.filter,
-                    sort: action.payload.params.sort,
-                    search: action.payload.params.search
-                }
+                ...action.payload
             };
         case ActionType.ADD_MOVIE:
-            const movies = [action.payload, ...state.movies.data];
             return {
                 ...state,
                 movie: action.payload,
-                movies: {
-                    ...state.movies,
-                    data: movies
-                }
             };
         case ActionType.EDIT_MOVIE:
             return {
@@ -64,4 +41,4 @@ const moviesReducer = (state = initialState, action) => {
     }
 };
 
-export { moviesReducer };
+export { moviesSlice };

@@ -1,7 +1,7 @@
 import { moviesSelector } from './moviesSelector';
-import { filtersSelector } from './filtersSelector';
+import { paramsSelector } from './paramsSelector';
 
 export {
     moviesSelector,
-    filtersSelector
+    paramsSelector
 };
