@@ -9,9 +9,9 @@ import {
 
 const URL_TEMPLATE = `${MOVIE_SERVICE_URL}${MOVIE_SERVICE_MOVIES}`;
 
-const addQueryString = (query, countOfKeys) => {
+const addQueryString = (query, keysCount) => {
     if (query && query.value !== '') {
-        const concat = countOfKeys = countOfKeys > 1 ? '&' : '';
+        const concat = keysCount = keysCount > 1 ? '&' : '';
         return `${query.key}=${query.value}${concat}`;
     }
     return '';
@@ -21,16 +21,16 @@ const createUrl = (url, queryString) => {
     if (!queryString) {
         return url;
     }
-    let countOfKeys = Object.keys(queryString).length;
+    let keysCount = Object.keys(queryString).length;
     let result = url;
-    if (countOfKeys > 0) {
+    if (keysCount > 0) {
         result += '?';
         for (let prop in queryString) {
             result += addQueryString({
                 key: prop,
                 value: queryString[prop]
-            }, countOfKeys);
-            countOfKeys -= 1;
+            }, keysCount);
+            keysCount -= 1;
         }
     }
     return result;
