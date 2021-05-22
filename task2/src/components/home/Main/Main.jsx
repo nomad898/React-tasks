@@ -11,19 +11,12 @@ import {
     MovieCatalogFilter,
     MovieCatalog
 } from '@components/home';
-import { MovieService } from '@containers';
 
-// TODO: make right order when real API
-const Main = memo((
-    {
-        onMovieClick
-    }) => {
+const Main = memo(() => {
     return (
         <Wrapper>
             <MovieCatalogFilter />
-            <MovieCatalog
-                onMovieClick={onMovieClick}
-            />
+            <MovieCatalog />
         </Wrapper>
     )
 });

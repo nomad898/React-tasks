@@ -1,7 +1,17 @@
 import {
-    useState
-} from 'react';
+    useSelector,
+    useDispatch
+} from "react-redux";
 import PropTypes from 'prop-types';
+import {
+    modalsSelector
+} from '@stores/selectors';
+import {
+    moviesThunk
+} from '@stores/thunks'
+import {
+    modalsAction
+} from '@stores/actions';
 import {
     EditMovieModal,
     DeleteMovieModal
@@ -19,19 +29,25 @@ import {
 
 const MovieCard = (
     {
-        movie,
-        onClick
+        movie
     }) => {
-    const [isEditMovieShown, setIsEditMovieShown] = useState(false);
-    const [isDeleteMovieShown, setIsDeleteMovieShown] = useState(false);
 
-    const handleCloseEditMovieModal = () => setIsEditMovieShown(false);
-    const handleShowEditMovieModal = () => setIsEditMovieShown(true);
-    const handleEditMovieSubmit = () => alert('Edited! Actually not...');
+    const dispatch = useDispatch();
 
-    const handleCloseDeleteMovieModal = () => setIsEditMovieShown(false);
-    const handleShowDeleteMovieModal = () => setIsEditMovieShown(true);
-    const handleDeleteMovieSubmit = () => alert('Deleted! Actually not...');
+    const showEditMovie = useSelector(modalsSelector.selectEditMovie);
+    const showDeleteMovie = useSelector(modalsSelector.selectDeleteMovie);
+
+    const handleShowEditMovieModal = () => {
+        dispatch(modalsAction.showEditMovie({ show: true, movieId: movie.id }))
+    };
+
+    const handleShowDeleteMovieModal = () => {
+        dispatch(modalsAction.showDeleteMovie({ show: true, movieId: movie.id }))
+    };
+
+    const getMovieId = () => {
+        dispatch(moviesThunk.getMovie(movie.id));
+    }
 
     return (
         <Wrapper>
@@ -44,29 +60,27 @@ const MovieCard = (
                     Delete
                 </MovieCardDropdownOption>
             </MovieCardDropdownButton>
-            <MovieCardImage src={movie.posterPath} onClick={() => onClick(movie)} />
+            <MovieCardImage src={movie.posterPath} onClick={getMovieId} />
             <MovieCardInfo>
                 <MovieCardTitle>
                     {movie.title}
                 </MovieCardTitle>
                 <MovieCardReleaseDate>
-                    {new Date(movie.releaseDate).getFullYear()}
+                    {movie.releaseDate.getFullYear()}
                 </MovieCardReleaseDate>
                 <MovieCardGenres>
                     {movie.genres.join(', ')}
                 </MovieCardGenres>
             </MovieCardInfo>
             {
-                isEditMovieShown && <EditMovieModal
-                    onSubmit={handleEditMovieSubmit}
-                    onCloseClick={handleCloseEditMovieModal}
-                />
+                showEditMovie.show
+                    && showEditMovie.movieId === movie.id
+                    && <EditMovieModal movie={movie} />
             }
             {
-                isDeleteMovieShown && <DeleteMovieModal
-                    onSubmit={handleDeleteMovieSubmit}
-                    onCloseClick={handleCloseDeleteMovieModal}
-                />
+                showDeleteMovie.show
+                    && showDeleteMovie.movieId === movie.id
+                    && <DeleteMovieModal movie={movie.id} />
             }
         </Wrapper>
     )
@@ -74,11 +88,12 @@ const MovieCard = (
 
 MovieCard.propTypes = {
     movie: PropTypes.shape({
+        id: PropTypes.number,
         title: PropTypes.string,
-        releaseDate: PropTypes.string,
+        releaseDate: PropTypes.instanceOf(Date),
         genres: PropTypes.arrayOf(PropTypes.string),
-        poster: PropTypes.string
-    })
+        posterPath: PropTypes.string
+    }).isRequired
 };
 
 export { MovieCard };

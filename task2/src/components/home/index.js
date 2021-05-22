@@ -1,10 +1,10 @@
 import { Header } from './Header/Header';
 import { Main } from './Main/Main';
-import { MovieSearch } from './Main/MovieSearch/MovieSearch';
+import { MovieSearch } from './Header/MovieSearch/MovieSearch';
 import { MovieCard } from './Main/MovieCard/MovieCard';
-import MovieCatalogFilter from './Main/MovieCatalogFilter/MovieCatalogFilter';
+import { MovieCatalogFilter } from './Main/MovieCatalogFilter/MovieCatalogFilter';
 import { MovieCatalogCounter } from './Main/MovieCatalogCounter/MovieCatalogCounter.styles';
-import MovieCatalog from './Main/MovieCatalog/MovieCatalog'
+import { MovieCatalog } from './Main/MovieCatalog/MovieCatalog'
 import {
     MovieSort,
     MovieSortText,

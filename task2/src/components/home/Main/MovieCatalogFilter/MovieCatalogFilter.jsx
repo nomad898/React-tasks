@@ -1,11 +1,7 @@
 import {
-    connect,
     useSelector,
     useDispatch
 } from "react-redux";
-import {
-    bindActionCreators
-} from "redux";
 import {
     MovieSort,
     MovieSortText,
@@ -14,7 +10,6 @@ import {
     MovieGenreList
 } from '@components/home';
 import {
-    moviesSelector,
     paramsSelector
 } from '@stores/selectors';
 import {
@@ -26,16 +21,23 @@ import {
 } from '@utils/constants';
 import { MovieCatalogFilter as Wrapper } from './MovieCatalogFilter.styles';
 
-const MovieCatalogFilter = ({
-    changeFilter,
-    changeSort
-}) => {
+const MovieCatalogFilter = () => {
+
+    const dispatch = useDispatch();
 
     const filter = useSelector(paramsSelector.selectFilter);
     const sort = useSelector(paramsSelector.selectSort);
 
     const genres = Object.entries(FilterType).map(([k, v]) => (v));
     const sorts = Object.entries(SortType).map(([k, v]) => ( { key: k, value: v }));
+
+    const changeSort = (event) => {
+        dispatch(paramsAction.sortChange(event.target.value))
+    };
+
+    const changeFilter = (event) => {
+        dispatch(paramsAction.filterChange(event.target.text))
+    };
 
     return (
         <Wrapper>
@@ -62,7 +64,7 @@ const MovieCatalogFilter = ({
                     {
                         sorts
                             .map((s, idx) =>
-                                <option key={idx} value={s.value} style={{ color: 'black' }}>
+                                <option key={idx} value={s.value}>
                                     {s.key}
                                 </option>
                             )
@@ -73,11 +75,4 @@ const MovieCatalogFilter = ({
     )
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        changeFilter: (event) => dispatch(paramsAction.filterChange(event.target.text)),
-        changeSort: (event) => dispatch(paramsAction.sortChange(event.target.value)),
-    }
-}
-
-export default connect(null, mapDispatchToProps)(MovieCatalogFilter);
+export { MovieCatalogFilter };

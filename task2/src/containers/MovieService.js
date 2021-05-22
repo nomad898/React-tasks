@@ -1,5 +1,6 @@
 import { HttpClient } from '@containers';
 import { codeStyleConverter } from '@utils/customs';
+import { Movie } from '@models';
 import {
     MOVIE_SERVICE_URL,
     MOVIE_SERVICE_MOVIES,
@@ -12,7 +13,7 @@ const URL_TEMPLATE = `${MOVIE_SERVICE_URL}${MOVIE_SERVICE_MOVIES}`;
 const addQueryString = (query, keysCount) => {
     if (query && query.value !== '') {
         const concat = keysCount = keysCount > 1 ? '&' : '';
-        return `${query.key}=${query.value}${concat}`;
+        return `${query.key}=${query.value.toLowerCase()}${concat}`;
     }
     return '';
 }
@@ -36,6 +37,20 @@ const createUrl = (url, queryString) => {
     return result;
 };
 
+const createMovie = (json) => new Movie(
+    json.title,
+    json.tagline,
+    json.voteAverage,
+    json.voteCount,
+    new Date(json.releaseDate),
+    json.posterPath,
+    json.overview,
+    json.budget,
+    json.revenue,
+    json.genres,
+    json.runtime,
+    json.id);
+
 const getMovies = async (queryString) => {
     const uri = createUrl(URL_TEMPLATE, queryString);
     try {
@@ -44,8 +59,7 @@ const getMovies = async (queryString) => {
             return false;
         }
         const movies = await response.json();
-        const data = [];
-        movies.data.map(m => data.push(codeStyleConverter.toCamel(m, { deep: true })));
+        const data = movies.data.map(m => createMovie(codeStyleConverter.toCamel(m)));
         return {
             data,
             offset: movies.offset,
@@ -59,7 +73,8 @@ const getMovies = async (queryString) => {
 const getMovie = async (id) => {
     const url = `${URL_TEMPLATE}/${id}`;
     const response = await HttpClient.send(url);
-    return await response.json();
+    const json = await response.json();
+    return createMovie(codeStyleConverter.toCamel(json));
 };
 
 const addMovie = async (movie, converter) => {
@@ -77,7 +92,7 @@ const addMovie = async (movie, converter) => {
 };
 
 const editMovie = async (movie, converter) => {
-    const url = URL_TEMPLATE;
+    const url = URL_TEMPLATE; 
     switch (converter) {
         case CodeStyleType.SNAKE:
             movie = codeStyleConverter.toSnake(movie);

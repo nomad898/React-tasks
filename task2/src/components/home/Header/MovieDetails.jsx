@@ -22,7 +22,7 @@ const MovieDetails = (
     }) => (
     <Wrapper>
         <MovieDetailsImageCol>
-            <MovieDetailsImage src={movie.poster} />
+            <MovieDetailsImage src={movie.posterPath} />
         </MovieDetailsImageCol>
         <MovieDetailsInfoCol>
             <MovieDetailsTitleRow>
@@ -31,13 +31,13 @@ const MovieDetails = (
                 </MovieDetailsTitle>
                 <MovieDetailsRating>
                     <span>
-                        {movie.rating}
+                        {movie.voteAverage}
                     </span>
                 </MovieDetailsRating>
             </MovieDetailsTitleRow>
             <MovieDetailsInfoRow>
                 <Text>
-                    {movie.genres}
+                    {movie.genres.join(', ')}
                 </Text>
             </MovieDetailsInfoRow>
             <MovieDetailsInfoRow>
@@ -45,12 +45,12 @@ const MovieDetails = (
                     {movie.releaseDate.getFullYear()}
                 </RedText>
                 <MovieDetailsDurationText>
-                    {movie.duration} min
+                    {movie.runtime} min
                 </MovieDetailsDurationText>
             </MovieDetailsInfoRow>
             <MovieDetailsInfoRow>
                 <MovieDetailsDescription>
-                    {movie.description}
+                    {movie.overview}
                 </MovieDetailsDescription>
             </MovieDetailsInfoRow>
         </MovieDetailsInfoCol>
@@ -61,12 +61,12 @@ MovieDetails.propTypes = {
     movie: PropTypes.shape({
         title: PropTypes.string,
         releaseDate: PropTypes.instanceOf(Date),
-        genres: PropTypes.string,
-        poster: PropTypes.string,
-        rating: PropTypes.number.isRequired,
-        duration: PropTypes.number.isRequired,
-        description: PropTypes.string.isRequired
-    })
+        genres: PropTypes.arrayOf(PropTypes.string),
+        posterPath: PropTypes.string,
+        voteAverage: PropTypes.number.isRequired,
+        runtime: PropTypes.number.isRequired,
+        overview: PropTypes.string.isRequired
+    }).isRequired
 };
 
 export { MovieDetails }

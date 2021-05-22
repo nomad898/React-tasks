@@ -1,7 +1,7 @@
 const selectMoviesCount = state => state.movies.data.length;
 const selectTotal = state => state.movies.total;
 const selectMovies = state => state.movies.data;
-const selectMovie = state => state.movie;
+const selectMovie = state => state.movies.movie;
 
 const moviesSelector = {
     selectMoviesCount,

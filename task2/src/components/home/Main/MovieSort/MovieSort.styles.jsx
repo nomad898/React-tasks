@@ -13,7 +13,6 @@ const MovieSortText = styled.span`
 const MovieSortDropdown = styled.select`
     padding: 5px 10px;
     background-color: transparent;
-    color: ${color.white};
     border: none;
 `;
 

@@ -1,48 +1,74 @@
-import { memo } from 'react';
+import {
+    memo
+} from 'react';
+import {
+    useSelector,
+    useDispatch
+} from "react-redux";
+import {
+    moviesAction,
+    modalsAction
+} from '@stores/actions';
+import {
+    moviesSelector,
+    modalsSelector
+} from '@stores/selectors';
 import {
     Header as Wrapper,
     AppTitle
 } from '@components/global';
 import {
     MovieSearch,
-    MovieDetails
+    MovieDetails,
+    AddMovieModal
 } from '@components/home';
 import { HeaderTop } from './HeaderTop.styles';
 import { HeaderText } from './HeaderText.styles';
-import { HeaderSearch } from './HeaderSearch.styles'
 import { AddMovieButton } from './AddMovieButton';
 import { SearchIconButton } from './SearchIconButton';
 
-const Header = memo((
-    {
-        activeMovie,
-        onSearchIconClick,
-        onAddMovieClick
-    }) => (
-    <Wrapper>
-        {
-            activeMovie ?
-                <>
-                    <HeaderTop>
-                        <AppTitle />
-                        <SearchIconButton onClick={() => onSearchIconClick(null)} />
-                    </HeaderTop>
-                    <MovieDetails movie={activeMovie} />
-                </> :
-                <>
-                    <HeaderTop>
-                        <AppTitle />
-                        <AddMovieButton onClick={onAddMovieClick} />
-                    </HeaderTop>
-                    <HeaderText>
-                        FIND YOUR MOVIE
-                    </HeaderText>
-                    <HeaderSearch>
+const Header = memo(() => {
+
+    const dispatch = useDispatch();
+
+    const movie = useSelector(moviesSelector.selectMovie);
+    const showAddMovie = useSelector(modalsSelector.selectAddMovie);
+
+    const handleSearchIconClick = () => {
+        dispatch(moviesAction.getMovieId(null));
+    };
+
+    const handleAddMovieClick = () => {
+        dispatch(modalsAction.showAddMovie(true));
+    };
+
+    return (
+        <Wrapper>
+            {
+                movie ?
+                    <>
+                        <HeaderTop>
+                            <AppTitle />
+                            <SearchIconButton onClick={handleSearchIconClick} />
+                        </HeaderTop>
+                        <MovieDetails movie={movie} />
+                    </> :
+                    <>
+                        <HeaderTop>
+                            <AppTitle />
+                            <AddMovieButton onClick={handleAddMovieClick} />
+                        </HeaderTop>
+                        <HeaderText>
+                            FIND YOUR MOVIE
+                        </HeaderText>
                         <MovieSearch />
-                    </HeaderSearch>
-                </>
-        }
-    </Wrapper>
-));
+                    </>
+            }
+            {
+                showAddMovie && <AddMovieModal />
+            }
+        </Wrapper>
+    )
+});
 
 export { Header };

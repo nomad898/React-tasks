@@ -29,7 +29,6 @@ const moviesSlice = (state = initialState, action) => {
         case ActionType.EDIT_MOVIE:
             return {
                 ...state,
-                movie: action.payload,
             };
         case ActionType.DELETE_MOVIE:
             return {

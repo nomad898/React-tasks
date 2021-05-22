@@ -31,11 +31,12 @@ const getMovies = (options = {}) => async (dispatch, getState) => {
 };
 
 const getMovie = (id) => async (dispatch, getState) => {
-    const response = await MovieService.getMovie(id);
-    if (response) {
-        const action = moviesAction.getMovie(response);
-        dispatch(action);
+    let movie = null
+    if (id) {
+        movie = await MovieService.getMovie(id);
     }
+    const action = moviesAction.getMovie(movie);
+    dispatch(action);
 };
 
 const addMovie = (movie) => async (dispatch, getState) => {

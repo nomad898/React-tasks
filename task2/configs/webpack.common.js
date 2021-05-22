@@ -13,6 +13,19 @@ const miniCssExtractPluginLoader = {
     },
 };
 
+const cssLoaders = (extra) => {
+    const loaders = [
+        miniCssExtractPluginLoader,
+        'css-loader'
+    ];
+
+    if (extra) {
+        loaders.push(extra);
+    }
+
+    return loaders;
+};
+
 module.exports = {
     context: paths.src,
     entry: {
@@ -71,18 +84,11 @@ module.exports = {
         },
         {
             test: /\.(s[ac]ss)$/,
-            use: [
-                miniCssExtractPluginLoader,
-                'css-loader',
-                'sass-loader'
-            ],
+            use: cssLoaders('sass-loader'),               
         },
         {
             test: /\.(css)$/,
-            use: [
-                miniCssExtractPluginLoader,
-                'css-loader'
-            ],
+            use: cssLoaders(),  
         }]
     },
 };

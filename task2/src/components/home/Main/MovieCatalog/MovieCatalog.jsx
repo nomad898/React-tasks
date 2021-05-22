@@ -7,7 +7,6 @@ import {
     useSelector,
     useDispatch
 } from "react-redux";
-import PropTypes from 'prop-types';
 import { moviesThunk } from '@stores/thunks';
 import {
     moviesSelector,
@@ -20,11 +19,16 @@ import {
 } from '@components/home';
 import { MovieCatalog as Wrapper } from './MovieCatalog.styles';
 
-const MovieCatalog = ({ onMovieClick, getMovies }) => {
+const MovieCatalog = () => {
+    const dispatch = useDispatch();
     const sort = useSelector(paramsSelector.selectSort);
     const filter = useSelector(paramsSelector.selectFilter);
     const movies = useSelector(moviesSelector.selectMovies);
     const total = useSelector(moviesSelector.selectTotal);
+
+    const getMovies = () => {
+        dispatch(moviesThunk.getMovies());
+    };
 
     useEffect(() => {
         getMovies();
@@ -44,7 +48,6 @@ const MovieCatalog = ({ onMovieClick, getMovies }) => {
                             <MovieCard
                                 key={idx}
                                 movie={movie}
-                                onClick={onMovieClick}
                             />
                         )
                 }
@@ -53,19 +56,4 @@ const MovieCatalog = ({ onMovieClick, getMovies }) => {
     )
 };
 
-MovieCatalog.propTypes = {
-    movies: PropTypes.arrayOf(PropTypes.shape({
-        title: PropTypes.string,
-        releaseDate: PropTypes.instanceOf(Date),
-        genres: PropTypes.string,
-        poster: PropTypes.string
-    }))
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getMovies: () => dispatch(moviesThunk.getMovies())
-    }
-}
-
-export default connect(null, mapDispatchToProps)(MovieCatalog);
+export { MovieCatalog };

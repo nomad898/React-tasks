@@ -19,12 +19,13 @@ const ModalInput = (
     {
         text,
         placeholder,
-        value,
-        readonly
+        defaultValue,
+        disabled,
+        onChange
     }) => (
     <ModalField>
         <RedText>{text}</RedText>
-        <Input placeholder={placeholder} value={value} readonly={readonly} />
+        <Input placeholder={placeholder} defaultValue={defaultValue} disabled={disabled} onChange={onChange} />
     </ModalField>
 );
 
