@@ -1,51 +1,18 @@
 import {
-    useState,
-    useCallback
-} from 'react';
-import {
-    HomeHeader,
-    HomeMain,
-    AddMovieModal
+    Header,
+    Main
 } from '@components/home';
 import { Footer } from '@components/global';
-import { useCountRenders } from '@utils';
+import { useCountRenders } from '@utils/hooks';
 
-const Home = (props, state) => {
-    const [activeMovie, setActiveMovie] = useState(null);
-
-    const handleShowMovie = useCallback(
-        (movie) => setActiveMovie(movie),
-        []
-    );
-
-    const [isAddMovieShown, setIsAddMovieShown] = useState(false);
-
-    const handleCloseAddMovieModal = () => setIsAddMovieShown(false);
-    const handleAddMovieSubmit = () => alert('Saved! Actually not...');
-    const handleShowAddMovieModal = useCallback(
-        () => setIsAddMovieShown(true),
-        []
-    );
-
+const Home = () => {    
     useCountRenders('Home');
 
     return (
         <>
-            <HomeHeader
-                activeMovie={activeMovie}
-                onSearchIconClick={handleShowMovie}
-                onAddMovieClick={handleShowAddMovieModal}
-            />
-            <HomeMain
-                onMovieClick={handleShowMovie}
-            />
+            <Header />
+            <Main />
             <Footer />
-            {
-                isAddMovieShown && <AddMovieModal
-                    onSubmit={handleAddMovieSubmit}
-                    onCloseClick={handleCloseAddMovieModal}
-                />
-            }
         </>
     )
 };

@@ -2,7 +2,29 @@ const paths = require('./paths');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
 // const { UnusedFilesWebpackPlugin } = require('unused-files-webpack-plugin');
+
+const miniCssExtractPluginLoader = {
+    loader: MiniCssExtractPlugin.loader,
+    options: {
+        publicPath: '',
+        esModule: true,
+    },
+};
+
+const cssLoaders = (extra) => {
+    const loaders = [
+        miniCssExtractPluginLoader,
+        'css-loader'
+    ];
+
+    if (extra) {
+        loaders.push(extra);
+    }
+
+    return loaders;
+};
 
 module.exports = {
     context: paths.src,
@@ -13,6 +35,7 @@ module.exports = {
         extensions: ['.js', '.jsx'],
         alias: {
             '@': paths.src,
+            '@app': `${paths.src}/app`,
             '@models': `${paths.src}/models`,
             '@components': `${paths.src}/components`,
             '@pages': `${paths.src}/pages`,
@@ -20,23 +43,19 @@ module.exports = {
             '@public': `${paths.public}`,
             '@utils': `${paths.src}/utils`,
             '@containers': `${paths.src}/containers`,
+            '@stores': `${paths.src}/stores`
         }
     },
     plugins: [
-        // plugin does not work with Webpack 5 https://stackoverflow.com/questions/65481943/typeerror-compiler-plugin-is-not-a-function-at-reactloadableplugin-apply
-        // new UnusedFilesWebpackPlugin({
-        //     patterns: [
-        //         'src/components/**/*.jsx',
-        //         'src/pages/**/*.jsx',
-        //         'src/stores/**/*.js'
-        //     ],
-        // }),
         new CleanWebpackPlugin(),
         new CopyWebpackPlugin({
             patterns: [{
                 from: `${paths.public}/assets/favicon.ico`,
                 to: paths.build
             }]
+        }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
         })
     ],
     module: {
@@ -65,27 +84,11 @@ module.exports = {
         },
         {
             test: /\.(s[ac]ss)$/,
-            use: [{
-                loader: MiniCssExtractPlugin.loader,
-                options: {
-                    publicPath: '',
-                },
-            },
-                'css-loader',
-                'sass-loader'
-            ],
+            use: cssLoaders('sass-loader'),               
         },
         {
             test: /\.(css)$/,
-            use: [{
-                loader: MiniCssExtractPlugin.loader,
-                options: {
-                    publicPath: '',
-                },
-            },
-                'css-loader'
-            ],
-        }
-        ]
+            use: cssLoaders(),  
+        }]
     },
 };

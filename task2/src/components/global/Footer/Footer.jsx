@@ -3,7 +3,7 @@ import { Footer as Wrapper } from './Footer.styles';
 
 const Footer = () => (
     <Wrapper>
-         <AppTitle />
+        <AppTitle />
     </Wrapper>
 );
 

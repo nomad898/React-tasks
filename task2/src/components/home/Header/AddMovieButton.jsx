@@ -1,8 +1,11 @@
-import { AddMovieButton as Wrapper } from './HeaderButton.styles';
 import { BoldText } from '@components/global';
+import { AddMovieButton as Wrapper } from './HeaderButton.styles';
 
-const AddMovieButton = (props) => (
-    <Wrapper onClick={props.onAddMovieClick}>
+const AddMovieButton = (
+    {
+        onClick
+    }) => (
+    <Wrapper onClick={onClick}>
         <BoldText>
             + ADD MOVIE
         </BoldText>

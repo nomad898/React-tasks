@@ -1,8 +1,12 @@
+@import './reset.css';
 @import './roboto.css';
-@import './color.scss';
+@import './_colors.scss';
 
-// TODO: create another file for color const values in SCSS style
 html {
     font-family: "Roboto", sans-serif;
-    color: #ffffff;
+    color: map-get($colors, 'white');
+}
+
+#root {
+    background-color: map-get($colors, 'primaryDark');
 }

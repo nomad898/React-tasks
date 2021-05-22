@@ -1,47 +1,122 @@
+import { HttpClient } from '@containers';
+import { codeStyleConverter } from '@utils/customs';
 import { Movie } from '@models';
-import avengersPoster from '@public/assets/images/avengers.jpg'
-import bohemianRhapsodyPoster from '@public/assets/images/bohemian-rhapsody.jpg'
-import inceptionPoster from '@public/assets/images/inception.jpg'
-import killBillPoster from '@public/assets/images/kill-bill.jpg'
-import pulpFictionPoster from '@public/assets/images/pulp-fiction.jpg'
+import {
+    MOVIE_SERVICE_URL,
+    MOVIE_SERVICE_MOVIES,
+    CodeStyleType,
+    HttpType
+} from '@utils/constants';
 
-const movies = [
-    new Movie('Marvel\'s Avengers', new Date(2012, 11, 10), 'COMEDY, CRIME', avengersPoster, 10, 111, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed libero lobortis mi ornare tempus. Vestibulum a efficitur eros. Sed sed ex mattis, tristique lacus ac, efficitur nisl. Maecenas pellentesque feugiat pulvinar. Nullam auctor in justo id sodales. Maecenas viverra eleifend orci quis mollis. Fusce sodales et arcu sed viverra. Pellentesque eget velit suscipit, imperdiet nisi a, cursus felis. Donec at lorem malesuada, sollicitudin orci id, rutrum neque. Morbi nec interdum ante, vel dignissim felis. Donec accumsan imperdiet rutrum.'),
-    new Movie('Bohemian Rhapsody', new Date(2018, 1, 28), 'DOCUMENTARY', bohemianRhapsodyPoster, 9.8, 130, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed libero lobortis mi ornare tempus. Vestibulum a efficitur eros. Sed sed ex mattis, tristique lacus ac, efficitur nisl. Maecenas pellentesque feugiat pulvinar. Nullam auctor in justo id sodales. Maecenas viverra eleifend orci quis mollis. Fusce sodales et arcu sed viverra. Pellentesque eget velit suscipit, imperdiet nisi a, cursus felis. Donec at lorem malesuada, sollicitudin orci id, rutrum neque. Morbi nec interdum ante, vel dignissim felis. Donec accumsan imperdiet rutrum.'),
-    new Movie('Inception', new Date(2010, 8, 6), 'CRIME', inceptionPoster, 7.7, 90, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed libero lobortis mi ornare tempus. Vestibulum a efficitur eros. Sed sed ex mattis, tristique lacus ac, efficitur nisl. Maecenas pellentesque feugiat pulvinar. Nullam auctor in justo id sodales. Maecenas viverra eleifend orci quis mollis. Fusce sodales et arcu sed viverra. Pellentesque eget velit suscipit, imperdiet nisi a, cursus felis. Donec at lorem malesuada, sollicitudin orci id, rutrum neque. Morbi nec interdum ante, vel dignissim felis. Donec accumsan imperdiet rutrum.'),
-    new Movie('Kill Bill', new Date(2005, 3, 21), 'HORROR, CRIME', killBillPoster, 4.6, 100, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed libero lobortis mi ornare tempus. Vestibulum a efficitur eros. Sed sed ex mattis, tristique lacus ac, efficitur nisl. Maecenas pellentesque feugiat pulvinar. Nullam auctor in justo id sodales. Maecenas viverra eleifend orci quis mollis. Fusce sodales et arcu sed viverra. Pellentesque eget velit suscipit, imperdiet nisi a, cursus felis. Donec at lorem malesuada, sollicitudin orci id, rutrum neque. Morbi nec interdum ante, vel dignissim felis. Donec accumsan imperdiet rutrum.'),
-    new Movie('Pulp Fiction', new Date(1998, 9, 14), 'COMEDY, CRIME', pulpFictionPoster, 3.9, 120, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed libero lobortis mi ornare tempus. Vestibulum a efficitur eros. Sed sed ex mattis, tristique lacus ac, efficitur nisl. Maecenas pellentesque feugiat pulvinar. Nullam auctor in justo id sodales. Maecenas viverra eleifend orci quis mollis. Fusce sodales et arcu sed viverra. Pellentesque eget velit suscipit, imperdiet nisi a, cursus felis. Donec at lorem malesuada, sollicitudin orci id, rutrum neque. Morbi nec interdum ante, vel dignissim felis. Donec accumsan imperdiet rutrum.')
-];
+const URL_TEMPLATE = `${MOVIE_SERVICE_URL}${MOVIE_SERVICE_MOVIES}`;
 
-const genres = [
-    'ALL',
-    'DOCUMENTARY',
-    'COMEDY',
-    'HORROR',
-    'CRIME'
-]
+const addQueryString = (query, keysCount) => {
+    if (query && query.value !== '') {
+        const concat = keysCount = keysCount > 1 ? '&' : '';
+        return `${query.key}=${query.value.toLowerCase()}${concat}`;
+    }
+    return '';
+}
 
-const getMovies = () => (
-    Promise.resolve(movies)
-);
-const getGenres = () => (
-    Promise.resolve(genres)
-);
-const addMovie = (movie) => (
-    Promise.resolve(movies.push(movie))
-);
-const editMovie = (movie) => (
-    Promise.resolve((movie) => {
-        movies[movie.id] = movie
-    })
-);
-const deleteMovie = (movie) => (
-    Promise.resolve(movies.filter(m => m !== movie))
-);
+const createUrl = (url, queryString) => {
+    if (!queryString) {
+        return url;
+    }
+    let keysCount = Object.keys(queryString).length;
+    let result = url;
+    if (keysCount > 0) {
+        result += '?';
+        for (let prop in queryString) {
+            result += addQueryString({
+                key: prop,
+                value: queryString[prop]
+            }, keysCount);
+            keysCount -= 1;
+        }
+    }
+    return result;
+};
+
+const createMovie = (json) => new Movie(
+    json.title,
+    json.tagline,
+    json.voteAverage,
+    json.voteCount,
+    new Date(json.releaseDate),
+    json.posterPath,
+    json.overview,
+    json.budget,
+    json.revenue,
+    json.genres,
+    json.runtime,
+    json.id);
+
+const getMovies = async (queryString) => {
+    const uri = createUrl(URL_TEMPLATE, queryString);
+    try {
+        const response = await HttpClient.send(uri);
+        if (!response.ok) {
+            return false;
+        }
+        const movies = await response.json();
+        const data = movies.data.map(m => createMovie(codeStyleConverter.toCamel(m)));
+        return {
+            data,
+            offset: movies.offset,
+            total: movies.totalAmount
+        };
+    } catch (error) {
+        return null;
+    }
+};
+
+const getMovie = async (id) => {
+    const url = `${URL_TEMPLATE}/${id}`;
+    const response = await HttpClient.send(url);
+    const json = await response.json();
+    return createMovie(codeStyleConverter.toCamel(json));
+};
+
+const addMovie = async (movie, converter) => {
+    const url = URL_TEMPLATE;
+    switch (converter) {
+        case CodeStyleType.SNAKE:
+            movie = codeStyleConverter.toSnake(movie);
+            break;
+    }
+    const response = await HttpClient.send(
+        url,
+        HttpClient.createRequest(HttpType.POST, { body: movie })
+    );
+    return await response.json();
+};
+
+const editMovie = async (movie, converter) => {
+    const url = URL_TEMPLATE; 
+    switch (converter) {
+        case CodeStyleType.SNAKE:
+            movie = codeStyleConverter.toSnake(movie);
+            break;
+    }
+    const response = await HttpClient.send(
+        url,
+        HttpClient.createRequest(HttpType.PUT, { body: movie })
+    );
+    return await response.json();
+};
+
+const deleteMovie = async (id) => {
+    const url = `${URL_TEMPLATE}/${id}`;
+    const response = await HttpClient.send(url, HttpClient.createRequest(HttpType.DELETE));
+    if (response.ok) {
+        return true;
+    }
+    return false;
+};
 
 const MovieService = {
     getMovies,
-    getGenres,
+    getMovie,
     addMovie,
     editMovie,
     deleteMovie

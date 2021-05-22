@@ -1,0 +1,12 @@
+const VOTE_AVERAGE_MIN = 0;
+const VOTE_AVERAGE_MAX = 10;
+
+const MOVIE_SERVICE_URL = 'http://localhost:4000';
+const MOVIE_SERVICE_MOVIES = '/movies';
+
+export {
+    VOTE_AVERAGE_MIN,
+    VOTE_AVERAGE_MAX,
+    MOVIE_SERVICE_URL,
+    MOVIE_SERVICE_MOVIES
+}
