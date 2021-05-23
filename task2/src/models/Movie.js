@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
-import { VOTE_AVERAGE_MIN, VOTE_AVERAGE_MAX } from '@utils/constants'
-import { range } from '@utils/customs'
+import { FilterType, VOTE_AVERAGE_MIN, VOTE_AVERAGE_MAX } from '@utils/constants'
+import { range } from '@utils/customs';
+import * as Yup from 'yup';
 
 class Movie {
     constructor(
@@ -48,4 +49,26 @@ Movie.PropTypes = {
     runtime: PropTypes.number
 }
 
-export { Movie }
+const MovieSchema = Yup.object({
+    title: Yup.string()
+        .min(2, 'Too Short!')
+        .max(50, 'Too Long!')
+        .required('Required'),
+    releaseDate: Yup.date()
+        .default(() => new Date())
+        .required('Required'),
+    movieUrl: Yup.string()
+        .url()
+        .required('Required'),
+    genre: Yup.string()
+        .oneOf(Object.entries(FilterType).map(([k, v]) => (k)).filter(m => m !== FilterType.ALL))
+        .required('Required'),
+    overview: Yup.string()
+        .required('Required'),
+    runtime: Yup.number()        
+        .positive()
+        .integer()
+        .required('Required')
+});
+
+export { Movie, MovieSchema }

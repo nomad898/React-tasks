@@ -24,7 +24,6 @@ const moviesSlice = (state = initialState, action) => {
         case ActionType.ADD_MOVIE:
             return {
                 ...state,
-                movie: action.payload,
             };
         case ActionType.EDIT_MOVIE:
             return {
@@ -33,7 +32,6 @@ const moviesSlice = (state = initialState, action) => {
         case ActionType.DELETE_MOVIE:
             return {
                 ...state,
-                movies: action.payload
             };
         default:
             return state;
