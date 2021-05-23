@@ -5,11 +5,11 @@
   "description": "My own webpack config for task#2",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack --config ./configs/webpack.dev.js",
+    "dev": "cross-env NODE_ENV=development webpack --config ./configs/webpack.dev.js --open",
     "test": "jest",
     "test-coverage": "jest --coverage",
     "build": "cross-env NODE_ENV=production webpack --config ./configs/webpack.prod.js --mode production",
-    "start": "cross-env NODE_ENV=development webpack serve --config ./configs/webpack.dev.js --open"
+    "start": "cross-env NODE_ENV=development webpack && concurrently \"webpack --watch --config ./configs/webpack.ssr.dev.js --mode development\" \"nodemon dist\""
   },
   "keywords": [
     "webpack",
@@ -21,7 +21,9 @@
     "@testing-library/react": "^11.2.7",
     "camelcase-keys": "^6.2.2",
     "core-js": "^3.12.1",
+    "express": "^4.17.1",
     "formik": "^2.2.8",
+    "node-polyfill-webpack-plugin": "^1.1.2",
     "prop-types": "^15.7.2",
     "query-string": "^7.0.0",
     "react": "^17.0.2",
@@ -34,6 +36,7 @@
     "redux-thunk": "^2.3.0",
     "snakecase-keys": "^4.0.2",
     "styled-components": "^5.3.0",
+    "webpack-node-externals": "^3.0.0",
     "yup": "^0.32.9"
   },
   "devDependencies": {
@@ -46,6 +49,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
+    "concurrently": "6.1.0",
     "copy-webpack-plugin": "^7.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^5.2.4",
@@ -59,6 +63,7 @@
     "jest": "^26.6.3",
     "mini-css-extract-plugin": "^1.6.0",
     "node-sass": "^5.0.0",
+    "nodemon": "2.0.7",
     "regenerator-runtime": "^0.13.7",
     "sass-loader": "^11.1.1",
     "style-loader": "^2.0.0",
