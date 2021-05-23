@@ -12,7 +12,7 @@ import {
 } from './Main/MovieSort/MovieSort.styles';
 import { MovieGenre } from './Main/MovieGenreList/MovieGenre.styles';
 import { MovieGenreList } from './Main/MovieGenreList/MovieGenreList.styles';
-import { MovieDetails } from './Header/MovieDetails';
+import { MovieDetails } from './Header/MovieDetails/MovieDetails';
 import {
     AddMovieModal,
     DeleteMovieModal,

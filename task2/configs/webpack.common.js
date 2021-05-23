@@ -9,7 +9,7 @@ const miniCssExtractPluginLoader = {
     loader: MiniCssExtractPlugin.loader,
     options: {
         publicPath: '',
-        esModule: true,
+        esModule: true,        
     },
 };
 

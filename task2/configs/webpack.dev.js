@@ -12,6 +12,7 @@ module.exports = merge(common, {
         historyApiFallback: true,
         hot: true,
         compress: true,
+        contentBase: paths.build
     },
     output: {
         filename: `[name].js`,
