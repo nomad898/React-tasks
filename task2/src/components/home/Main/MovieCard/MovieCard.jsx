@@ -2,6 +2,7 @@ import {
     useSelector,
     useDispatch
 } from "react-redux";
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
     modalsSelector
@@ -27,10 +28,7 @@ import {
     MovieCardDropdownOption
 } from './MovieCard.styles';
 
-const MovieCard = (
-    {
-        movie
-    }) => {
+const MovieCard = ({ movie }) => {
 
     const dispatch = useDispatch();
 
@@ -60,7 +58,9 @@ const MovieCard = (
                     Delete
                 </MovieCardDropdownOption>
             </MovieCardDropdownButton>
-            <MovieCardImage src={movie.posterPath} onClick={getMovieId} />
+            <Link to={`/film/${movie.id}`}>
+                <MovieCardImage src={movie.posterPath} onClick={getMovieId} />
+            </Link>
             <MovieCardInfo>
                 <MovieCardTitle>
                     {movie.title}
@@ -74,13 +74,13 @@ const MovieCard = (
             </MovieCardInfo>
             {
                 showEditMovie.show
-                    && showEditMovie.movieId === movie.id
-                    && <EditMovieModal movie={movie} />
+                && showEditMovie.movieId === movie.id
+                && <EditMovieModal movie={movie} />
             }
             {
                 showDeleteMovie.show
-                    && showDeleteMovie.movieId === movie.id
-                    && <DeleteMovieModal movie={movie.id} />
+                && showDeleteMovie.movieId === movie.id
+                && <DeleteMovieModal movie={movie.id} />
             }
         </Wrapper>
     )

@@ -7,6 +7,7 @@ import {
     useSelector,
     useDispatch
 } from "react-redux";
+import { useParams } from 'react-router-dom';
 import { moviesThunk } from '@stores/thunks';
 import {
     moviesSelector,
@@ -26,32 +27,41 @@ const MovieCatalog = () => {
     const movies = useSelector(moviesSelector.selectMovies);
     const total = useSelector(moviesSelector.selectTotal);
 
-    const getMovies = () => {
-        dispatch(moviesThunk.getMovies());
+    const { search }  = useParams();
+
+    const getMovies = (options) => {
+        dispatch(moviesThunk.getMovies(options));
     };
 
     useEffect(() => {
-        getMovies();
-    }, [sort, filter]);
+        if (search) {
+            getMovies({ search: search });
+        }
+    }, [sort, filter, search]);
 
     return (
         <>
-            <MovieCatalogCounter>
-                <span>
-                    <BoldText>{total}</BoldText> movies found
-                </span>
-            </MovieCatalogCounter>
-            <Wrapper>
-                {
-                    movies
-                        .map((movie, idx) =>
-                            <MovieCard
-                                key={idx}
-                                movie={movie}
-                            />
-                        )
-                }
-            </Wrapper>
+            { total > 0 ?
+                <>
+                    <MovieCatalogCounter>
+                        <span>
+                            <BoldText>{total}</BoldText> movies found
+                    </span>
+                    </MovieCatalogCounter>
+                    <Wrapper>
+                        {
+                            movies
+                                .map((movie, idx) =>
+                                    <MovieCard
+                                        key={idx}
+                                        movie={movie}
+                                    />
+                                )
+                        }
+                    </Wrapper>
+                </>
+                : <div>No movies found</div>
+            }
         </>
     )
 };
