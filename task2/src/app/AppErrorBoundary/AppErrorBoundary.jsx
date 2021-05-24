@@ -1,0 +1,46 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import {
+    Global,
+    Local,
+} from './AppErrorBoundary.styles';
+
+class AppErrorBoundary extends Component {
+
+    state = {
+        hasError: false
+    };
+
+    static getDerivedStateFromError() {
+        return { hasError: true };
+    }
+
+    componentDidCatch(error, errorInfo) {
+        console.log(error, errorInfo);
+    }
+
+    render() {
+        if (this.state.hasError) {
+            return (
+                <>
+                    {
+                        this.props.localBoundary
+                            ? <Local>
+                                {this.props.localBoundary}
+                            </Local>
+                            : <Global>
+                                <h1>Ohhh, no... Something went wrong.</h1>
+                            </Global>
+                    }
+                </>
+            );
+        }
+        return this.props.children;
+    }
+}
+
+AppErrorBoundary.propTypes = {
+    localBoundary: PropTypes.element
+};
+
+export { AppErrorBoundary };

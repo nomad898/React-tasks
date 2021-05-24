@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should take a snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-fnVZcZ gaVJhY"
+  >
+    <div
+      class="sc-fFSPTT PQcM"
+    >
+      <img
+        class="sc-iemWCZ cVmCtg"
+        src="https://image.tmdb.org/t/p/w500/bXrZ5iHBEjH7WMidbUDQ0U2xbmr.jpg"
+      />
+    </div>
+    <div
+      class="sc-bkbkJK bTyyDD"
+    >
+      <div
+        class="sc-dIvrsQ sc-hHEiqL dDscFh kHSXvr"
+      >
+        <span
+          class="sc-jSFjdj sc-dlMDgC bFcnby ceiYFo"
+        >
+          Jumanji: Welcome to the Jungle
+        </span>
+        <div
+          class="sc-kfYoZR fVZbyK"
+        >
+          <span>
+            6.5
+          </span>
+        </div>
+      </div>
+      <div
+        class="sc-dIvrsQ dDscFh"
+      >
+        <span
+          class="sc-jSFjdj bFcnby"
+        >
+          Action, Adventure, Comedy, Family
+        </span>
+      </div>
+      <div
+        class="sc-dIvrsQ dDscFh"
+      >
+        <span
+          class="sc-iCoGMd jqNton"
+        >
+          2017
+        </span>
+        <span
+          class="sc-iCoGMd sc-fKgJPI jqNton iZySEA"
+        >
+          119 min
+        </span>
+      </div>
+      <div
+        class="sc-dIvrsQ dDscFh"
+      >
+        <p
+          class="sc-bCwfaz eBnsE"
+        >
+          The tables are turned as four teenagers are sucked into Jumanji's
+        </p>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
