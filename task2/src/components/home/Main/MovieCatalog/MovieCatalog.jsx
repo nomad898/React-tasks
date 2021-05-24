@@ -7,7 +7,6 @@ import {
     useSelector,
     useDispatch
 } from "react-redux";
-import { useParams } from 'react-router-dom';
 import { moviesThunk } from '@stores/thunks';
 import {
     moviesSelector,
@@ -24,10 +23,9 @@ const MovieCatalog = () => {
     const dispatch = useDispatch();
     const sort = useSelector(paramsSelector.selectSort);
     const filter = useSelector(paramsSelector.selectFilter);
+    const search = useSelector(paramsSelector.selectSearch);
     const movies = useSelector(moviesSelector.selectMovies);
     const total = useSelector(moviesSelector.selectTotal);
-
-    const { search }  = useParams();
 
     const getMovies = (options) => {
         dispatch(moviesThunk.getMovies(options));
@@ -35,7 +33,7 @@ const MovieCatalog = () => {
 
     useEffect(() => {
         if (search) {
-            getMovies({ search: search });
+            getMovies({ search });
         }
     }, [sort, filter, search]);
 
