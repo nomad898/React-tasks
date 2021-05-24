@@ -9,6 +9,17 @@ import { Home, NotFound } from '@pages';
 
 const routes = [
     {
+        path: '/',
+        component: Home,
+        exact: true,
+        routes: [
+            {
+                path: '/search/:value',
+                component: Home,
+            }
+        ]
+    },
+    {
         path: '/search',
         component: Home,
         routes: [
