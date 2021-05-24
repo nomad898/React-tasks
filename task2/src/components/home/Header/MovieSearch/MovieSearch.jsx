@@ -1,7 +1,9 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import queryString from 'query-string'
 import { useDispatch } from "react-redux";
+import { paramsAction } from '@stores/actions';
 import { moviesThunk } from '@stores/thunks';
 import { MovieSearchButton } from './MovieSearchButton.styles';
 import { MovieSearchInput } from './MovieSearchInput.styles';
@@ -15,16 +17,18 @@ const Wrapper = styled.div`
 
 const MovieSearch = () => {
 
+    const [search, setSearch] = useState('');
     const dispatch = useDispatch();
     let history = useHistory();
     let location = useLocation();
 
     const handleChange = (event) => {
-        history.push(`/search/${event.target.value}`);
+        setSearch(event.target.value);
     };
 
     const handleClick = () => {
-        dispatch(moviesThunk.getMovies({ search: location.pathname.split('/')[2] }));
+        history.push(`/search/${search}`);
+        dispatch(paramsAction.search(search));
     };
 
     return (

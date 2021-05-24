@@ -2,23 +2,11 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Redirect,
-    Link
+    Redirect
 } from 'react-router-dom';
 import { Home, NotFound } from '@pages';
 
 const routes = [
-    {
-        path: '/',
-        component: Home,
-        exact: true,
-        routes: [
-            {
-                path: '/search/:value',
-                component: Home,
-            }
-        ]
-    },
     {
         path: '/search',
         component: Home,
@@ -55,7 +43,8 @@ const RouteWithSubRoutes = (route) => {
 
 const AppSwitch = () => {
     return (
-        <Switch>       
+        <Switch>
+            <Redirect exact from="/" to="/search" />
             {routes.map((route) => (
                 <RouteWithSubRoutes key={route.path} {...route} />
             ))}
