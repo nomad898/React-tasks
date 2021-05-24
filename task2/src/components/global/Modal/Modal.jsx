@@ -1,5 +1,6 @@
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
+import { useField } from 'formik';
 import {
     Text,
     RedText
@@ -17,20 +18,25 @@ import {
 
 const ModalInput = (
     {
-        text,
-        placeholder,
-        defaultValue,
-        disabled,
-        onChange
-    }) => (
-    <ModalField>
-        <RedText>{text}</RedText>
-        <Input placeholder={placeholder} defaultValue={defaultValue} disabled={disabled} onChange={onChange} />
-    </ModalField>
-);
+       label, ...props
+    }) => {
+
+    const [field, meta, helpers] = useField(props);
+
+    return (
+        <ModalField>
+            <RedText>{label}</RedText>
+            <Input {...field} {...props}  />
+            {
+                meta.touched && meta.error
+                    ? (<RedText>{meta.error}</RedText>) : null
+            }
+        </ModalField>
+    );
+};
 
 ModalInput.propTypes = {
-    text: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
     placeholder: PropTypes.string.isRequired,
     value: PropTypes.string,
     readonly: PropTypes.bool

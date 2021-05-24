@@ -1,10 +1,10 @@
-import { AppErrorBoundary } from '@components/global';
-import { Home } from '@pages';
+import { AppErrorBoundary } from './AppErrorBoundary/AppErrorBoundary';
+import { AppRouter } from './AppRouter/AppRouter';
 import '@styles/style.scss'
 
 const App = () => (
     <AppErrorBoundary>
-      <Home />
+        <AppRouter />
     </AppErrorBoundary>
 );
 

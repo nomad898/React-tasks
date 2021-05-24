@@ -1,6 +1,8 @@
 import {
-    memo
+    memo,
+    useEffect
 } from 'react';
+import { useParams } from 'react-router-dom';
 import {
     useSelector,
     useDispatch
@@ -35,7 +37,7 @@ const Header = memo(() => {
     const showAddMovie = useSelector(modalsSelector.selectAddMovie);
 
     const handleSearchIconClick = () => {
-        dispatch(moviesAction.getMovieId(null));
+        dispatch(moviesAction.getMovie(null));
     };
 
     const handleAddMovieClick = () => {

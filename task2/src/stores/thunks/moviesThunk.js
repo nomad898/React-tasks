@@ -16,7 +16,10 @@ const getMovies = (options = {}) => async (dispatch, getState) => {
         options.sortOrder = SortOrderType.ASC;
     }
     if (!options.search) {
-       options.search = state.params.search;
+        options.search = state.params.search;        
+    }
+    if (!options.searchBy) {
+        options.searchBy = 'title';
     }
     const response = await MovieService.getMovies(options);
     if (response) {
@@ -30,7 +33,7 @@ const getMovies = (options = {}) => async (dispatch, getState) => {
     }
 };
 
-const getMovie = (id) => async (dispatch, getState) => {
+const getMovie = (id) => async (dispatch) => {
     let movie = null
     if (id) {
         movie = await MovieService.getMovie(id);
@@ -39,7 +42,7 @@ const getMovie = (id) => async (dispatch, getState) => {
     dispatch(action);
 };
 
-const addMovie = (movie) => async (dispatch, getState) => {
+const addMovie = (movie) => async (dispatch) => {
     const response = await MovieService.addMovie(movie, CodeStyleType.SNAKE);
     if (response) {
         const action = moviesAction.addMovie(response);
@@ -47,7 +50,7 @@ const addMovie = (movie) => async (dispatch, getState) => {
     }
 };
 
-const editMovie = (movie) => async (dispatch, getState) => {
+const editMovie = (movie) => async (dispatch) => {
     const response = await MovieService.editMovie(movie, CodeStyleType.SNAKE);
     if (response) {
         const action = moviesAction.editMovie(response);
@@ -55,7 +58,7 @@ const editMovie = (movie) => async (dispatch, getState) => {
     }
 };
 
-const deleteMovie = (id) => async (dispatch, getState) => {
+const deleteMovie = (id) => async (dispatch) => {
     const response = await MovieService.deleteMovie(id);
     if (response) {
         const action = moviesAction.deleteMovie(response);

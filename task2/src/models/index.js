@@ -1,3 +1,3 @@
-import { Movie } from './Movie';
+import { Movie, MovieSchema } from './Movie';
 
-export { Movie };
+export { Movie, MovieSchema };
