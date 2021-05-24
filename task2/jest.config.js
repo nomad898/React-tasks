@@ -9,6 +9,8 @@ module.exports = {
     moduleNameMapper: {
         "^@root(.*)$": "<rootDir>/src$1",
         "^@components(.*)$": "<rootDir>/src/components$1",
+        "^@containers(.*)$": "<rootDir>/src/containers$1",
+        "^@stores(.*)$": "<rootDir>/src/stores$1",
         "^@models(.*)$": "<rootDir>/src/models$1",
         "^@utils(.*)$": "<rootDir>/src/utils$1",
         "\\.(css|scss|jpg)$": "identity-obj-proxy",
